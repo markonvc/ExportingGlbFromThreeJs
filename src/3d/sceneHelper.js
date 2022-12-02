@@ -6,10 +6,13 @@ import Camera from "./3dUtils/cameraHelper";
 
 import Loader from "./3dUtils/LoadHelper";
 
+import Store from "../store/Store";
+
 class Viewer3D {
   createScene() {
     const canvas = document.querySelector(".webgl");
     const scene = new THREE.Scene();
+    Store.scene = scene;
 
     const sizes = {
       width: window.innerWidth,
@@ -23,9 +26,9 @@ class Viewer3D {
 
     Light.addLight(scene);
 
-    Controls.initializeControls(camera, renderer)
+    Controls.initializeControls(camera, renderer);
 
-    Loader.loadModel("", "", scene)
+    Loader.loadModel("twoSeat", null, scene);
 
     function animate() {
       requestAnimationFrame(animate);
@@ -36,4 +39,4 @@ class Viewer3D {
   }
 }
 
-export default new Viewer3D()
+export default new Viewer3D();

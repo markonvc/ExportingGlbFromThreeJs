@@ -1,14 +1,19 @@
 import { useEffect } from "react";
 import Viewer3D from "./3d/sceneHelper";
+import Menu from "./components/Menu";
 
 function App() {
   useEffect(() => {
-    Viewer3D.createScene()
+    Viewer3D.createScene();
   }, []);
 
   return (
-    <div className="App">
-      <div className="webgl"></div>
+    <div style={{ display: "flex" }} className="App">
+      <div
+        style={{ marginTop: "40px", background: "Lightgrey" }}
+        className="webgl"
+      ></div>
+      <Menu />
     </div>
   );
 }
