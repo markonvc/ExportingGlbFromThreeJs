@@ -13,19 +13,20 @@ class Loader {
       modelUrl,
       (gltf) => {
         model = gltf.scene;
-        let meshes = [];
+        scene.add(model)
+        // let meshes = [];
 
-        model?.traverse((mesh) => {
-          if (mesh.isMesh) {
-            meshes.push(mesh);
-          }
-        });
+        // model?.traverse((mesh) => {
+        //   if (mesh.isMesh) {
+        //     meshes.push(mesh);
+        //   }
+        // });
 
-        meshes.forEach((mesh) => {
-          mPosition && mesh.position.setX(mPosition);
-          console.log(mesh);
-          scene.add(mesh);
-        });
+        // meshes.forEach((mesh) => {
+        //   mPosition && mesh.position.setX(mPosition);
+        //   console.log(mesh);
+        //   scene.add(mesh);
+        // });
 
         console.log(scene);
       },

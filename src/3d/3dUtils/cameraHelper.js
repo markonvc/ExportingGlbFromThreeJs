@@ -8,7 +8,7 @@ class Camera {
             0.1,
             1000
         );
-        camera.position.set(0, 1, 5);
+        camera.position.set(0, 1, 4);
         scene.add(camera);
 
         return camera

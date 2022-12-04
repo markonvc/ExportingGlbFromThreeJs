@@ -17,7 +17,7 @@ function Menu() {
       className="menu"
     >
       <h2 style={{ marginTop: "0", textAlign: "center" }} className="heading">
-        get-plop model menu
+        get-plop configuration menu
       </h2>
       <div className="menu-content">
         <div
@@ -41,7 +41,7 @@ function Menu() {
           </button>
         </div>
         <p style={{ textAlign: "center" }} className="add-model">
-          add model
+          add armChair
         </p>
       </div>
     </div>
