@@ -1,16 +1,14 @@
 import * as THREE from "three";
 
 class Light {
-    addLight(scene) {
-        const light = new THREE.DirectionalLight(0xffffff, 1);
-        light.position.set(1, 5, 0);
-        light.target.position.set(0, -1, 0);
-        // light.target.updateMatrixWorld();
-        console.log(light.target);
-        scene.add(light);
-        console.log(scene);
+  addLight(scene) {
+    const DirectionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    DirectionalLight.position.set(0, 0.5, 3);
+    scene.add(DirectionalLight);
 
-    }
-
+    const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+    ambientLight.position.set(0, 5, 0);
+    // scene.add(ambientLight);
+  }
 }
-export default new Light()
+export default new Light();

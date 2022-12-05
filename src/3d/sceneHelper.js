@@ -20,7 +20,7 @@ class Viewer3D {
     };
 
     let renderer = Renderer.initializeWebGlRenderer(canvas);
-    console.log(renderer);
+    Store.renderer = renderer;
 
     let camera = Camera.setCamera(scene, sizes);
 
