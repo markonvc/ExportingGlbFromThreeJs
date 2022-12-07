@@ -8,8 +8,7 @@ function OpenInAr() {
 
   function exportGLBRunMv() {
     Store.modelHref = "/models/armChair.glb";
-    setEnterAr(true);
-    // ExportGlb.exportglbFromScene(Store.scene, setEnterAr);
+    ExportGlb.exportglbFromScene(setEnterAr);
   }
 
   return (

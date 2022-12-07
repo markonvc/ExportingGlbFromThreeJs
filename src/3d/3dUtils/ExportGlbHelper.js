@@ -2,9 +2,9 @@ import { GLTFExporter } from "three/examples/jsm/exporters/GLTFExporter";
 import Store from "../../store/Store";
 
 class ExportGlb {
-  exportglbFromScene(scene, setEnterAr) {
-    console.log(scene);
+  exportglbFromScene(setEnterAr) {
     const exporter = new GLTFExporter();
+    const scene = Store.scene;
     exporter.parse(
       scene,
       (result) => {
@@ -12,7 +12,6 @@ class ExportGlb {
           this.saveArrayBuffer(result, "scene.glb", setEnterAr);
         } else {
           const output = JSON.stringify(result, null, 2);
-          console.log(output);
           this.saveString(output, "scene.gltf", setEnterAr);
         }
       },
@@ -22,19 +21,17 @@ class ExportGlb {
       {
         trs: false,
         onlyVisible: true,
-        binary: true,
+        binary: false,
         maxTextureSize: 4096,
       }
     );
   }
 
   save(blob, fileName, setEnterAr) {
-    const link = document.createElement("a");
-    document.body.appendChild(link);
-
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    Store.modelHref = "/models/armChair.glb";
+    console.log(Store.renderer);
+    Store.modelHref = URL.createObjectURL(blob);
+    Store.renderer.resetState();
+    console.log(Store.renderer);
     setEnterAr(true);
   }
 

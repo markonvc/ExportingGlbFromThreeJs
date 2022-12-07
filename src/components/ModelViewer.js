@@ -10,7 +10,6 @@ function ModelViewer() {
     if (mv.current !== null) {
       console.log(Store.modelHref);
       const mvElement = mv.current;
-      console.log(mvElement);
       mvElement.addEventListener("load", () => {
         mvElement.activateAR();
       });
@@ -24,11 +23,14 @@ function ModelViewer() {
           ref={mv}
           src={Store.modelHref}
           shadow-intensity="1"
-          ar
-          ar-modes="webxr, scene-viewer"
-          camera-controls
+          camera-controls="true"
+          quick-look-browsers="safari chrome"
           touch-action="pan-y"
           alt="A 3D model carousel"
+          ar
+          ar-scale="auto"
+          ar-placement="floor"
+          ar-modes="webxr scene-viewer quick-look"
         >
           <button slot="ar-button" id="ar-button">
             View in your space

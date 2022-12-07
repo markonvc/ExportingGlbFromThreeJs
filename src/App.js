@@ -6,7 +6,7 @@ import ModelViewer from "./components/ModelViewer";
 
 function App() {
   useEffect(() => {
-    // Viewer3D.createScene();
+    Viewer3D.createScene();
   }, []);
 
   return (
