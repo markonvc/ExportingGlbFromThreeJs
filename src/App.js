@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Viewer3D from "./3d/sceneHelper";
 import Menu from "./components/Menu";
 import OpenInAr from "./components/OpenInAr";
-import ModelViewer from "./components/ModelViewer";
+import ModelViewer from "./components/mv/ModelViewer";
 
 function App() {
   useEffect(() => {

@@ -4,9 +4,19 @@ import Store from "../../store/Store";
 class ExportGlb {
   exportglbFromScene(setEnterAr) {
     const exporter = new GLTFExporter();
-    const scene = Store.scene;
+    // const scene = Store.scene;
+    console.log(Store.scene);
+    let meshes = [];
+    Store.scene.children.forEach((item) => {
+      if (item.isGroup) {
+        item.children.forEach((mesh) => {
+          mesh.isMesh && meshes.push(mesh);
+        });
+      }
+    });
+    console.log(meshes);
     exporter.parse(
-      scene,
+      meshes,
       (result) => {
         if (result instanceof ArrayBuffer) {
           this.saveArrayBuffer(result, "scene.glb", setEnterAr);
@@ -19,10 +29,7 @@ class ExportGlb {
         console.log("An error happened during parsing", error);
       },
       {
-        trs: false,
-        onlyVisible: true,
-        binary: false,
-        maxTextureSize: 4096,
+        binary: true,
       }
     );
   }
@@ -30,7 +37,6 @@ class ExportGlb {
   save(blob, fileName, setEnterAr) {
     console.log(Store.renderer);
     Store.modelHref = URL.createObjectURL(blob);
-    Store.renderer.resetState();
     console.log(Store.renderer);
     setEnterAr(true);
   }
