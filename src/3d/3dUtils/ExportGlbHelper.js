@@ -4,7 +4,7 @@ import Store from "../../store/Store";
 class ExportGlb {
   exportglbFromScene(setEnterAr) {
     const exporter = new GLTFExporter();
-    // const scene = Store.scene;
+    const scene = Store.scene;
     console.log(Store.scene);
     let meshes = [];
     Store.scene.children.forEach((item) => {
@@ -16,7 +16,7 @@ class ExportGlb {
     });
     console.log(meshes);
     exporter.parse(
-      meshes,
+      scene,
       (result) => {
         if (result instanceof ArrayBuffer) {
           this.saveArrayBuffer(result, "scene.glb", setEnterAr);
@@ -35,9 +35,7 @@ class ExportGlb {
   }
 
   save(blob, fileName, setEnterAr) {
-    console.log(Store.renderer);
     Store.modelHref = URL.createObjectURL(blob);
-    console.log(Store.renderer);
     setEnterAr(true);
   }
 

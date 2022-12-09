@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Store from "../../store/Store";
 import { ArContext } from "../../context/ArContext";
 
@@ -7,34 +7,29 @@ import "./Mv.scss";
 function ModelViewer() {
   const { enterAr } = useContext(ArContext);
   const mv = useRef(null);
+  const ol = useRef(null);
+  const [overlay, setOverlay] = useState(true);
+
+  useEffect(() => {
+    if (ol.current !== null) {
+      const overlayElement = ol.current;
+      if (overlay) {
+        overlayElement.classList.remove("show");
+      } else overlayElement.classList.add("show");
+    }
+
+  }, [overlay])
 
   useEffect(() => {
     if (mv.current !== null) {
-      console.log(Store.modelHref);
       const mvElement = mv.current;
+      console.log(Store.modelHref);
       mvElement.addEventListener("load", () => {
         mvElement.activateAR();
-        setTimeout(() => {
-          mvElement.style.visibility = "visible";
-        }, 2000);
-
+        setOverlay(false);
         URL.revokeObjectURL(Store.modelHref);
       });
 
-      mvElement.addEventListener("error", (event) => {
-        if (event.detail.type === "loadfailure") {
-          document.getElementById("ar-error").click();
-          alert("error in ar");
-        }
-      });
-
-      mvElement.addEventListener("ar-status", (event) => {
-        // alert("change in ar-status");
-      });
-
-      mvElement.addEventListener("ar-tracking", (event) => {
-        // alert("change in ar-tracking");
-      });
     }
   }, [enterAr]);
 
@@ -44,7 +39,7 @@ function ModelViewer() {
         <model-viewer
           id="mviewer"
           ref={mv}
-          src="models/armChair.glb"
+          src="models/twoSeat.glb"
           shadow-intensity="1"
           camera-controls="true"
           quick-look-browsers="safari chrome"
@@ -53,13 +48,15 @@ function ModelViewer() {
           ar
           ar-scale="auto"
           ar-placement="floor"
-          ar-modes="scene-viewer quick-look"
+          ar-modes="webxr quick-look"
         >
+          <div ref={ol} className="overlay"></div>
+
           <button type="button" id="ar-error" className="hide">
             AR Error
           </button>
 
-          <button slot="exit-webxr-ar-button" id="exit-webxr-ar-button">
+          <button onClick={() => setOverlay(true)} slot="exit-webxr-ar-button" id="exit-webxr-ar-button">
             Back
           </button>
 

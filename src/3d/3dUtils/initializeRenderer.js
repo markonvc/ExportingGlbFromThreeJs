@@ -16,7 +16,6 @@ class InitializeRenderer {
   };
 
   initializeDOM = (renderer, canvas) => {
-    renderer.domElement.style.background = "greey";
     canvas.appendChild(renderer.domElement);
     console.log(canvas);
   };

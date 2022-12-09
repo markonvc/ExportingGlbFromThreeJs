@@ -1,8 +1,8 @@
 import * as THREE from "three";
-import Controls from "./3dUtils/controlsHelper";
-import Renderer from "./3dUtils/initializeRenderer";
+import Controls from "./3dUtils/ControlsHelper";
+import Renderer from "./3dUtils/InitializeRenderer";
 import Light from "./3dUtils/LightHelper";
-import Camera from "./3dUtils/cameraHelper";
+import Camera from "./3dUtils/CameraHelper";
 
 import Loader from "./3dUtils/LoadHelper";
 

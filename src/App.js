@@ -1,8 +1,10 @@
 import { useEffect } from "react";
-import Viewer3D from "./3d/sceneHelper";
-import Menu from "./components/Menu";
-import OpenInAr from "./components/OpenInAr";
+import Viewer3D from "./3d/SceneHelper";
+import Menu from "./components/menu/Menu";
+import OpenInAr from "./components/openInAr/OpenInAr";
 import ModelViewer from "./components/mv/ModelViewer";
+
+import "./App.css";
 
 function App() {
   useEffect(() => {
@@ -13,9 +15,9 @@ function App() {
     <div>
       <OpenInAr />
 
-      <div style={{ display: "flex" }} className="App">
+      <div className="threeAndMenu">
         <div
-          style={{ marginTop: "40px", background: "Lightgrey" }}
+          style={{ marginTop: "20px", background: "Lightgrey" }}
           className="webgl"
         ></div>
 
