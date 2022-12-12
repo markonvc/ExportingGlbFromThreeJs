@@ -7,7 +7,7 @@ class Loader {
     const modelUrl = ModelUrls[newModel].modelUrl;
 
     const loader = new GLTFLoader();
-
+    console.log("jjj");
     loader.load(
       modelUrl,
       (gltf) => {

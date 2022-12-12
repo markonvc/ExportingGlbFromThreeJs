@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Viewer3D from "./3d/SceneHelper";
 import Menu from "./components/menu/Menu";
 import OpenInAr from "./components/openInAr/OpenInAr";
@@ -7,8 +7,12 @@ import ModelViewer from "./components/mv/ModelViewer";
 import "./App.css";
 
 function App() {
+  const webgl = useRef(null);
+
   useEffect(() => {
-    Viewer3D.createScene();
+    if (webgl !== null) {
+      Viewer3D.createScene();
+    }
   }, []);
 
   return (
@@ -19,6 +23,7 @@ function App() {
         <div
           style={{ marginTop: "20px", background: "Lightgrey" }}
           className="webgl"
+          ref={webgl}
         ></div>
 
         <Menu />
