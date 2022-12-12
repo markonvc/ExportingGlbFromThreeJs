@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Store from "../../store/Store";
 import { ArContext } from "../../context/ArContext";
-
+import "@google/model-viewer";
 import "./Mv.scss";
 
 function ModelViewer() {
@@ -24,9 +24,11 @@ function ModelViewer() {
       const mvElement = mv.current;
       console.log(Store.modelHref);
       mvElement.addEventListener("load", () => {
-        // mvElement.activateAR();
-        setOverlay(false);
-        URL.revokeObjectURL(Store.modelHref);
+        try {
+          mvElement.activateAR();
+          setOverlay(false);
+          URL.revokeObjectURL(Store.modelHref);
+        } catch (error) {}
       });
     }
   }, [enterAr]);
@@ -49,10 +51,6 @@ function ModelViewer() {
           ar-modes="webxr quick-look"
         >
           <div ref={ol} className="overlay"></div>
-
-          <button slot="ar-button" id="ar-button">
-            View in your space
-          </button>
 
           <button type="button" id="ar-error" className="hide">
             AR Error

@@ -7,7 +7,7 @@ class ExportGlb {
     const scene = Store.scene;
 
     let meshes = [];
-    Store.scene.children.forEach((item) => {
+    scene.children.forEach((item) => {
       if (item.isGroup) {
         item.children.forEach((mesh) => {
           mesh.isMesh && meshes.push(mesh);
@@ -15,7 +15,7 @@ class ExportGlb {
       }
     });
     exporter.parse(
-      scene,
+      meshes,
       (result) => {
         if (result instanceof ArrayBuffer) {
           this.saveArrayBuffer(result, "scene.glb", setEnterAr);

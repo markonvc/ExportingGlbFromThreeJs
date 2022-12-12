@@ -58,7 +58,7 @@ function Menu() {
           className="button-container"
         >
           <button
-            style={{ width: "100px", height: "100px", background: "red" }}
+            style={{ width: "100px", height: "100px", background: "green" }}
             className="change-model"
             onClick={changeColor}
           ></button>
