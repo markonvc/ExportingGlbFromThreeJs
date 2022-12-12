@@ -7,12 +7,13 @@ function OpenInAr() {
   const { setEnterAr } = useContext(ArContext);
 
   function exportGLBRunMv() {
-    Store.modelHref = "/models/armChair.glb";
     ExportGlb.exportglbFromScene(setEnterAr);
   }
 
   return (
-    <div style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}>
+    <div
+      style={{ marginTop: "20px", display: "flex", justifyContent: "center" }}
+    >
       <button onClick={exportGLBRunMv}>Open in AR</button>
     </div>
   );

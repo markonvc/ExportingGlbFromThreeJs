@@ -5,7 +5,7 @@ class ExportGlb {
   exportglbFromScene(setEnterAr) {
     const exporter = new GLTFExporter();
     const scene = Store.scene;
-    console.log(Store.scene);
+
     let meshes = [];
     Store.scene.children.forEach((item) => {
       if (item.isGroup) {
@@ -14,7 +14,6 @@ class ExportGlb {
         });
       }
     });
-    console.log(meshes);
     exporter.parse(
       scene,
       (result) => {

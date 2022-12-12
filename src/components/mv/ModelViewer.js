@@ -17,8 +17,7 @@ function ModelViewer() {
         overlayElement.classList.remove("show");
       } else overlayElement.classList.add("show");
     }
-
-  }, [overlay])
+  }, [overlay]);
 
   useEffect(() => {
     if (mv.current !== null) {
@@ -29,7 +28,6 @@ function ModelViewer() {
         setOverlay(false);
         URL.revokeObjectURL(Store.modelHref);
       });
-
     }
   }, [enterAr]);
 
@@ -39,7 +37,7 @@ function ModelViewer() {
         <model-viewer
           id="mviewer"
           ref={mv}
-          src="models/twoSeat.glb"
+          src={Store.modelHref}
           shadow-intensity="1"
           camera-controls="true"
           quick-look-browsers="safari chrome"
@@ -56,7 +54,11 @@ function ModelViewer() {
             AR Error
           </button>
 
-          <button onClick={() => setOverlay(true)} slot="exit-webxr-ar-button" id="exit-webxr-ar-button">
+          <button
+            onClick={() => setOverlay(true)}
+            slot="exit-webxr-ar-button"
+            id="exit-webxr-ar-button"
+          >
             Back
           </button>
 

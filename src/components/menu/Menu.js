@@ -6,7 +6,7 @@ import Store from "../../store/Store";
 
 function Menu() {
   function changeModel() {
-    CofigureModelPart.loadModel("armChair", 1, Store.scene);
+    CofigureModelPart.loadModel("armChair", -0.2, Store.scene);
   }
 
   function changeColor() {
@@ -19,7 +19,7 @@ function Menu() {
         width: "100%",
         marginTop: "20px",
         display: "flex",
-        justifyContent: "space-around"
+        justifyContent: "space-around",
       }}
       className="menu"
     >
@@ -39,13 +39,13 @@ function Menu() {
           >
             <img
               style={{ width: "100%" }}
-              src="Screenshot_7.png"
+              src="threeSeat.png"
               alt="model"
             ></img>
           </button>
         </div>
         <p style={{ textAlign: "center" }} className="add-model">
-          add armChair
+          configure model
         </p>
       </div>
       <div className="menu-content">
@@ -61,8 +61,7 @@ function Menu() {
             style={{ width: "100px", height: "100px", background: "red" }}
             className="change-model"
             onClick={changeColor}
-          >
-          </button>
+          ></button>
         </div>
         <p style={{ textAlign: "center" }} className="add-model">
           change color of the back
