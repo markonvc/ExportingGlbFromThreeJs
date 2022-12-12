@@ -24,7 +24,7 @@ function ModelViewer() {
       const mvElement = mv.current;
       console.log(Store.modelHref);
       mvElement.addEventListener("load", () => {
-        mvElement.activateAR();
+        // mvElement.activateAR();
         setOverlay(false);
         URL.revokeObjectURL(Store.modelHref);
       });
@@ -49,6 +49,10 @@ function ModelViewer() {
           ar-modes="webxr quick-look"
         >
           <div ref={ol} className="overlay"></div>
+
+          <button slot="ar-button" id="ar-button">
+            View in your space
+          </button>
 
           <button type="button" id="ar-error" className="hide">
             AR Error
