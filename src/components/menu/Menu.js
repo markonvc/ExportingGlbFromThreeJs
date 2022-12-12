@@ -1,12 +1,12 @@
 import React from "react";
 import { BackSide } from "three";
-import LoadHelper from "../../3d/3dUtils/LoadHelper";
+import CofigureModelPart from "../../3d/3dUtils/CofigureModelPart";
 import ColorHelper from "../../3d/3dUtils/ColorHelper";
 import Store from "../../store/Store";
 
 function Menu() {
   function changeModel() {
-    LoadHelper.loadModel("armChair", 1, Store.scene);
+    CofigureModelPart.loadModel("armChair", 1, Store.scene);
   }
 
   function changeColor() {
