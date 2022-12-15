@@ -13,7 +13,7 @@ class Color {
               side: THREE.DoubleSide,
               needsUpdate: true,
             });
-            mesh.material.color.setRGB(0, 142, 0);
+            mesh.material.color.setRGB(0, 0, 0);
           }
         });
       }

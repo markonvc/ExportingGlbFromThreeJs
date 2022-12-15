@@ -10,6 +10,11 @@ function ModelViewer() {
   const ol = useRef(null);
   const [overlay, setOverlay] = useState(true);
 
+  function reloadPage() {
+    setOverlay(true);
+    // window.location.reload();
+  }
+
   useEffect(() => {
     if (ol.current !== null) {
       const overlayElement = ol.current;
@@ -26,8 +31,10 @@ function ModelViewer() {
       mvElement.addEventListener("load", () => {
         try {
           mvElement.activateAR();
-          setOverlay(false);
-          URL.revokeObjectURL(Store.modelHref);
+          setTimeout(() => {
+            setOverlay(false);
+            URL.revokeObjectURL(Store.modelHref);
+          }, 2000);
         } catch (error) {}
       });
     }
@@ -50,14 +57,14 @@ function ModelViewer() {
           ar-placement="floor"
           ar-modes="webxr quick-look"
         >
-          <div ref={ol} className="overlay"></div>
+          <div id="overlayContent" ref={ol} className="overlay"></div>
 
           <button type="button" id="ar-error" className="hide">
             AR Error
           </button>
 
           <button
-            onClick={() => setOverlay(true)}
+            onClick={reloadPage}
             slot="exit-webxr-ar-button"
             id="exit-webxr-ar-button"
           >

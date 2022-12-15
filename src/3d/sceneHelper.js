@@ -28,7 +28,7 @@ class Viewer3D {
 
     Controls.initializeControls(camera, renderer);
 
-    Loader.loadModel("twoSeat", null, scene);
+    Loader.loadModel("singleSeat", scene);
 
     function animate() {
       requestAnimationFrame(animate);

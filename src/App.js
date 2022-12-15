@@ -3,11 +3,26 @@ import Viewer3D from "./3d/SceneHelper";
 import Menu from "./components/menu/Menu";
 import OpenInAr from "./components/openInAr/OpenInAr";
 import ModelViewer from "./components/mv/ModelViewer";
+import ModelViewerIos from "./components/mv/ModelViewerIos";
 
 import "./App.css";
 
 function App() {
   const webgl = useRef(null);
+
+  function getMobileOperatingSystem() {
+    var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+    if (/android/i.test(userAgent)) {
+      return <ModelViewer />;
+    }
+
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+      return <ModelViewerIos />;
+    }
+
+    return <ModelViewer />;
+  }
 
   useEffect(() => {
     if (webgl !== null) {
@@ -21,7 +36,12 @@ function App() {
 
       <div className="threeAndMenu">
         <div
-          style={{ marginTop: "20px", background: "Lightgrey" }}
+          style={{
+            marginTop: "20px",
+            display: "flex",
+            justifyContent: "center",
+            background: "Lightgrey",
+          }}
           className="webgl"
           ref={webgl}
         ></div>
@@ -29,7 +49,7 @@ function App() {
         <Menu />
       </div>
 
-      <ModelViewer />
+      {getMobileOperatingSystem()}
     </div>
   );
 }

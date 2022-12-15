@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import ExportGlb from "../../3d/3dUtils/ExportGlbHelper";
-import Store from "../../store/Store";
 import { ArContext } from "../../context/ArContext";
 
 function OpenInAr() {
-  const { setEnterAr } = useContext(ArContext);
+  const { enterAr, setEnterAr } = useContext(ArContext);
 
   function exportGLBRunMv() {
-    ExportGlb.exportglbFromScene(setEnterAr);
+    if (enterAr) {
+      setEnterAr(!enterAr);
+      ExportGlb.exportglbFromScene(setEnterAr);
+    } else ExportGlb.exportglbFromScene(setEnterAr);
   }
 
   return (

@@ -1,13 +1,11 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import ModelUrls from "../../mockData/modelUrls";
-
+import { ModelUrls } from "../../mockData/ModelUrls";
 class Loader {
-  loadModel(newModel, mPosition, scene) {
+  loadModel(newModel, scene) {
     let model;
     const modelUrl = ModelUrls[newModel].modelUrl;
 
     const loader = new GLTFLoader();
-    console.log("jjj");
     loader.load(
       modelUrl,
       (gltf) => {

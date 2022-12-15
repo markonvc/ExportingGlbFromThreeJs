@@ -1,17 +1,31 @@
 import React from "react";
-import { BackSide } from "three";
 import CofigureModelPart from "../../3d/3dUtils/CofigureModelPart";
-import ColorHelper from "../../3d/3dUtils/ColorHelper";
+// import ColorHelper from "../../3d/3dUtils/ColorHelper";
 import Store from "../../store/Store";
 
 function Menu() {
-  function changeModel() {
-    CofigureModelPart.loadModel("armChair", -0.2, Store.scene);
+  function changeModel(modelName) {
+    console.log(modelName);
+    let loadedModels = Store.loadedModels;
+    let model = loadedModels.find((m) => m === modelName);
+
+    if (model) {
+      alert(`Model: ${modelName} is already added!`);
+      return;
+    }
+    console.log(model);
+    if (model === "leftSeat" && modelName === "corner") {
+      alert(`Can't add ${modelName}`);
+      return;
+    }
+
+    CofigureModelPart.loadModel(modelName, Store.scene);
+    Store.loadedModels.push(modelName);
   }
 
-  function changeColor() {
-    ColorHelper.changeColor();
-  }
+  // function changeColor() {
+  //   ColorHelper.changeColor();
+  // }
 
   return (
     <div
@@ -35,17 +49,14 @@ function Menu() {
           <button
             style={{ width: "100px", height: "100px" }}
             className="change-model"
-            onClick={changeModel}
+            onClick={() => changeModel("leftSeat")}
           >
-            <img
-              style={{ width: "100%" }}
-              src="threeSeat.png"
-              alt="model"
-            ></img>
+            <img style={{ width: "100%" }} src="leftSeat.png" alt="model"></img>
           </button>
         </div>
+
         <p style={{ textAlign: "center" }} className="add-model">
-          configure model
+          Add Left Seat
         </p>
       </div>
       <div className="menu-content">
@@ -58,13 +69,42 @@ function Menu() {
           className="button-container"
         >
           <button
-            style={{ width: "100px", height: "100px", background: "green" }}
+            style={{ width: "100px", height: "100px" }}
             className="change-model"
-            onClick={changeColor}
-          ></button>
+            onClick={() => changeModel("rightSeat")}
+          >
+            <img
+              style={{ width: "100%" }}
+              src="rightSeat.png"
+              alt="model"
+            ></img>
+          </button>
         </div>
+
         <p style={{ textAlign: "center" }} className="add-model">
-          change color of the back
+          Add Right Seat
+        </p>
+      </div>
+      <div className="menu-content">
+        <div
+          style={{
+            marginTop: "10px",
+            display: "flex",
+            justifyContent: "center",
+          }}
+          className="button-container"
+        >
+          <button
+            style={{ width: "100px", height: "100px" }}
+            className="change-model"
+            onClick={() => changeModel("corner")}
+          >
+            <img style={{ width: "100%" }} src="corner.png" alt="model"></img>
+          </button>
+        </div>
+
+        <p style={{ textAlign: "center" }} className="add-model">
+          Add corner
         </p>
       </div>
     </div>
