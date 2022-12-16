@@ -1,9 +1,11 @@
-@media(min-width: 999px) {
+@media (min-width: 999px) {
   .threeAndMenu {
     display: flex;
   }
 
   .webgl {
-    width: 70%;
+    margin-left: 50px;
+    width: 60%;
+    height: 60vh;
   }
 }

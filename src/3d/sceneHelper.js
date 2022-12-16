@@ -3,9 +3,6 @@ import Controls from "./3dUtils/ControlsHelper";
 import Renderer from "./3dUtils/InitializeRenderer";
 import Light from "./3dUtils/LightHelper";
 import Camera from "./3dUtils/CameraHelper";
-
-import Loader from "./3dUtils/LoadHelper";
-
 import Store from "../store/Store";
 
 class Viewer3D {
@@ -27,8 +24,6 @@ class Viewer3D {
     Light.addLight(scene);
 
     Controls.initializeControls(camera, renderer);
-
-    Loader.loadModel("singleSeat", scene);
 
     function animate() {
       requestAnimationFrame(animate);

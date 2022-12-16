@@ -22,7 +22,9 @@ class ConfigureModel {
       modelUrl,
       (gltf) => {
         model = gltf.scene;
+        model.name = newModel;
         scene.add(model);
+        console.log(scene);
       },
       function (xhr) {
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");

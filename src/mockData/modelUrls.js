@@ -15,6 +15,6 @@ export const ModelUrls = {
     modelUrl: "models/singleSeatBrick.glb",
   },
   corner: {
-    modelUrl: "models/corner+sofa+brick.glb",
+    modelUrl: "models/corner.glb",
   },
 };
