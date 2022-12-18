@@ -3,9 +3,13 @@ import CofigureModelPart from "../../3d/3dUtils/CofigureModelPart";
 // import ColorHelper from "../../3d/3dUtils/ColorHelper";
 import { dragStart, dragEnd } from "../../helpers/DragHelper";
 import Store from "../../store/Store";
+import "./Menu.scss"
 
 function Menu() {
-  const dragImg = useRef(null);
+  const dragSingleSeat = useRef(null);
+  const dragleftSeat = useRef(null);
+  const dragRightSeat = useRef(null);
+  const dragCorner = useRef(null);
 
   function addModel(modelName) {
     const scene = Store.scene;
@@ -41,11 +45,38 @@ function Menu() {
   // }
 
   useEffect(() => {
-    if (dragImg.current !== null) {
-      console.log(dragImg.current);
-      let dragElement = dragImg.current;
-      dragElement.addEventListener("dragstart", dragStart);
-      dragElement.addEventListener("dragend", dragEnd);
+    if (dragSingleSeat.current !== null && dragleftSeat.current
+      !== null && dragleftSeat !== null && dragCorner !== null) {
+
+      let dragImages = [];
+      dragImages.push(dragSingleSeat.current);
+      dragImages.push(dragleftSeat.current);
+      dragImages.push(dragRightSeat.current);
+      dragImages.push(dragCorner.current);
+
+      dragImages.forEach(img => {
+        img.addEventListener("dragstart", (e) => {
+
+          setTimeout(() => {
+            e.target.style.opacity = "0.1";
+            e.target.style.setProperty('cursor', 'grab', 'important');
+          }, 0)
+
+
+          dragStart(img.id)
+        });
+      })
+
+      dragImages.forEach(img => {
+        img.addEventListener("dragend", (e) => {
+
+          setTimeout(() => {
+            e.target.style.opacity = "1";
+            e.target.style.cursor = "grab";
+          }, 0)
+
+        });
+      })
     }
   }, []);
 
@@ -78,14 +109,16 @@ function Menu() {
             className="button-container"
           >
             <button
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: "100px", height: "100px", border: "none", padding: "0" }}
               className="change-model"
               onClick={() => addModel("singleSeat")}
             >
               <img
-                ref={dragImg}
+                className="imgModel"
+                id="singleSeat"
+                ref={dragSingleSeat}
                 draggable="true"
-                style={{ width: "100%" }}
+                style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="singleSeat.png"
                 alt="model"
               ></img>
@@ -106,13 +139,16 @@ function Menu() {
             className="button-container"
           >
             <button
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: "100px", height: "100px", border: "none", padding: "0" }}
               className="change-model"
               onClick={() => addModel("leftSeat")}
             >
               <img
-                ref={dragImg}
-                style={{ width: "100%" }}
+                className="imgModel"
+                id="leftSeat"
+                ref={dragleftSeat}
+                draggable="true"
+                style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="leftSeat.png"
                 alt="model"
               ></img>
@@ -142,13 +178,16 @@ function Menu() {
             className="button-container"
           >
             <button
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: "100px", height: "100px", border: "none", padding: "0" }}
               className="change-model"
               onClick={() => addModel("rightSeat")}
             >
               <img
-                ref={dragImg}
-                style={{ width: "100%" }}
+                className="imgModel"
+                id="rightSeat"
+                ref={dragRightSeat}
+                draggable="true"
+                style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="rightSeat.png"
                 alt="model"
               ></img>
@@ -169,13 +208,16 @@ function Menu() {
             className="button-container"
           >
             <button
-              style={{ width: "100px", height: "100px" }}
+              style={{ width: "100px", height: "100px", border: "none", padding: "0" }}
               className="change-model"
               onClick={() => addModel("corner")}
             >
               <img
-                ref={dragImg}
-                style={{ width: "100%" }}
+                className="imgModel"
+                id="corner"
+                ref={dragCorner}
+                draggable="true"
+                style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="singleCorner.png"
                 alt="model"
               ></img>

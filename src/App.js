@@ -42,6 +42,7 @@ function App() {
             justifyContent: "center",
             background: "Lightgrey",
           }}
+          id="canvasContainer"
           className="webgl"
           ref={webgl}
         ></div>

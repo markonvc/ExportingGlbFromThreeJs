@@ -1,3 +1,4 @@
+import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
@@ -23,6 +24,12 @@ class ConfigureModel {
       (gltf) => {
         model = gltf.scene;
         model.name = newModel;
+        model.userData.name = newModel;
+        model.userData.draggable = true;
+        model.scale.set(3, 3, 3)
+        model.position.z = 12
+        model.position.x = -1
+        // model.visible = false;
         scene.add(model);
         console.log(scene);
       },

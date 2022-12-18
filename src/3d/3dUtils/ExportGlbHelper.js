@@ -15,7 +15,7 @@ class ExportGlb {
       }
     });
     exporter.parse(
-      meshes,
+      scene,
       (result) => {
         if (result instanceof ArrayBuffer) {
           this.saveArrayBuffer(result, "scene.glb", setEnterAr);
@@ -28,14 +28,19 @@ class ExportGlb {
         console.log("An error happened during parsing", error);
       },
       {
-        binary: true,
+        binary: false,
       }
     );
   }
 
   save(blob, fileName, setEnterAr) {
-    Store.modelHref = URL.createObjectURL(blob);
-    setEnterAr(true);
+    // Store.modelHref = URL.createObjectURL(blob);
+    // setEnterAr(true);
+    const link = document.createElement('a')
+    document.body.appendChild(link)
+    link.href = URL.createObjectURL(blob);
+    link.download = fileName;
+    link.click();
   }
 
   saveArrayBuffer(buffer, fileName, setEnterAr) {

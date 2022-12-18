@@ -3,13 +3,11 @@ import * as THREE from "three";
 class Light {
   addLight(scene) {
     const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(0, 3, 3);
-    console.log(light.target);
+    light.position.set(-30, 50, -30);
     scene.add(light);
-    console.log(scene);
 
-    const AmbientLight = new THREE.AmbientLight(0xffffff, 1);
-    AmbientLight.position.set(0, 5, 0);
+    const AmbientLight = new THREE.AmbientLight(0xffffff, 0.30);
+    // AmbientLight.position.set(0, 5, 0);
     scene.add(AmbientLight);
   }
 }
