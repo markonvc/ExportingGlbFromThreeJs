@@ -9,16 +9,33 @@ export function dragStart(modelName) {
     canvas.setAttribute("model", modelName);
   } else {
     canvas.setAttribute("model", modelName);
-    canvas.addEventListener("dragenter", dragEnter)
+    canvas.addEventListener("dragenter", dragEnter);
   }
 }
 
 function dragEnter(e) {
-  e.preventDefault()
+  e.preventDefault();
 
   let scene = Store.scene;
   let model = this.getAttribute("model");
 
+  let loadedModel = scene.children.filter((item) => {
+    if (item.isGroup) {
+      return item.name === model;
+    }
+  });
+
+  if (loadedModel.length) return;
+
+  console.log(loadedModel);
+
+  if (
+    (loadedModel?.name === "corner" && model === "leftSeat") ||
+    (loadedModel?.name === "leftSeat" && model === "corner")
+  )
+    return;
+
+  Store.draggableModel = model;
   ConfigureModel.loadModel(model, scene);
-  Raycaster.initializeRaycaster(scene, model)
+  Raycaster.initializeRaycaster(scene, model, this);
 }

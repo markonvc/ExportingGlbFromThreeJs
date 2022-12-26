@@ -1,9 +1,9 @@
 import * as THREE from "three";
-import Controls from "./3dUtils/ControlsHelper";
 import Renderer from "./3dUtils/InitializeRenderer";
 import Light from "./3dUtils/LightHelper";
 import Camera from "./3dUtils/CameraHelper";
 import Ground from "./3dUtils/GroundHelper";
+import Target from "./3dUtils/TargetHelper";
 import Store from "../store/Store";
 
 class Viewer3D {
@@ -25,9 +25,8 @@ class Viewer3D {
 
     Light.addLight(scene);
 
-    // Controls.initializeControls(camera, renderer);
-
     Ground.loadGround(scene);
+    // Target.loadTarget("target", scene);
 
     function animate() {
       requestAnimationFrame(animate);

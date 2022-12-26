@@ -2,49 +2,83 @@ import * as THREE from "three";
 import Store from "../../store/Store";
 
 class Raycaster {
-    initializeRaycaster(scene, model) {
-        console.log("tttt");
-        const camera = Store.camera
-        const raycaster = new THREE.Raycaster();
-        const clickMouse = new THREE.Vector2();
-        const moveMouse = new THREE.Vector2();
+  raycasterMove;
+  raycastClick;
+  clickMouse;
+  moveMouse;
+  model;
 
-        window.addEventListener("mousemove", event => {
-            console.log("move");
-            moveMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            moveMouse.y = (event.clientY / window.innerHeight) * 2 + 1;
-            console.log(moveMouse.x);
+  initializeRaycaster(scene, nModel, canvas) {
+    console.log(nModel);
+    this.model = nModel;
+    console.log(this.model);
+    canvas.addEventListener("mousemove", this.mouseMove);
 
-            raycaster.setFromCamera(moveMouse, camera);
-            const found = raycaster.intersectObjects(scene.children);
-            console.log(found);
+    canvas.addEventListener("click", (event) => {
+      this.raycastClick = new THREE.Raycaster();
+      this.clickMouse = new THREE.Vector2();
+      this.clickMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      this.clickMouse.y = (event.clientY / window.innerHeight) * 2 + 1;
 
-            if (found.length > 0) {
-                console.log("found");
-                let draggable;
-                scene.children.forEach(item => {
-                    if (item.isGroup && item.name === model) {
-                        draggable = item;
-                    }
-                })
-                console.log(`find draggable: ${draggable.userData.name}`);
+      this.raycastClick.setFromCamera(this.clickMouse, Store.camera);
+      const found = this.raycastClick.intersectObjects(scene.children);
 
-                for (let m of found) {
-                    if (m.object.userData.name !== "ground")
-                        continue;
+      if (found.length > 0) {
+        let draggable = [];
+        scene.children.forEach((item) => {
+          if (item.isGroup) {
+            draggable.push(item);
+          }
+        });
 
-                    draggable.position.x = m.point.x;
-                    draggable.position.y = m.point.y;
-                    // draggable.position.z = m.point.z;
-                    draggable.visible = true;
-                }
+        console.log(`find click: ${draggable}`);
 
+        for (let m of found) {
+          if (m.object.userData.name === "ground") {
+            canvas.removeEventListener("mousemove", this.mouseMove);
+            draggable.forEach((item) => {
+              console.log(item.name);
+              item.position.x = -1;
+              item.position.z = 12;
+              item.visible = true;
+            });
+          }
+        }
+      }
+    });
+  }
 
-            }
-        })
+  mouseMove(e) {
+    let draggableModel = Store.draggableModel;
+    console.log(draggableModel);
+    this.raycasterMove = new THREE.Raycaster();
+    this.moveMouse = new THREE.Vector2();
 
+    this.moveMouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    this.moveMouse.y = (e.clientY / window.innerHeight) * 2 + 1;
 
+    this.raycasterMove.setFromCamera(this.moveMouse, Store.camera);
+    const found = this.raycasterMove.intersectObjects(Store.scene.children);
+
+    if (found.length > 0) {
+      let draggable;
+      Store.scene.children.forEach((item) => {
+        if (item.isGroup && item.name === draggableModel) {
+          draggable = item;
+        }
+      });
+      console.log(`find draggable: ${draggable}`);
+
+      for (let m of found) {
+        if (m.object.userData.name === "ground") {
+          console.log(m.object.userData.name);
+          draggable.position.x = m.point.x;
+          draggable.position.z = -m.point.z;
+          draggable.visible = true;
+        }
+      }
     }
+  }
 }
 
 export default new Raycaster();

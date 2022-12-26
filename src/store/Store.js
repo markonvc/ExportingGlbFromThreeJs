@@ -4,6 +4,7 @@ class Store {
   renderer = null;
   loadedModels = [];
   camera = null;
+  draggableModel = null;
 }
 
 export default new Store();
