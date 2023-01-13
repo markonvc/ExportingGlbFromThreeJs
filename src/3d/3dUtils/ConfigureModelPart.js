@@ -4,6 +4,7 @@ import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
   loadModel(newModel, scene) {
     console.log("usao u configurator");
+    console.log(newModel);
     let model;
     const modelUrl = ModelUrls[newModel].modelUrl;
 

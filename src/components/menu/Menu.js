@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import CofigureModelPart from "../../3d/3dUtils/CofigureModelPart";
+import CofigureModelPart from "../../3d/3dUtils/ConfigureModelPart";
 // import ColorHelper from "../../3d/3dUtils/ColorHelper";
 import { dragStart } from "../../helpers/DragHelper";
 import pickingOrder from "../../helpers/ModelPickingOrderHelper";
@@ -14,29 +14,7 @@ function Menu() {
 
   function addModel(modelName) {
     const scene = Store.scene;
-    // let add = true;
-
     pickingOrder(modelName);
-    // const model = scene.children.find((item) => {
-    //   return item.name === "corner" || item.name === "leftSeat";
-    // });
-
-    // scene.children.forEach((item) => {
-    //   if (item.isGroup && item.name === modelName) {
-    //     console.log(modelName);
-    //     add = false;
-    //   }
-    // });
-
-    // if (
-    //   (model?.name === "corner" && modelName === "leftSeat") ||
-    //   (model?.name === "leftSeat" && modelName === "corner")
-    // ) {
-    //   add = false;
-    // }
-
-    // console.log(add);
-
     CofigureModelPart.loadModel(modelName, scene);
   }
 
@@ -109,6 +87,7 @@ function Menu() {
           >
             <button
               id="singleSeat"
+              ref={dragSingleSeat}
               style={{
                 width: "100px",
                 height: "100px",
@@ -120,7 +99,6 @@ function Menu() {
             >
               <img
                 className="imgModel"
-                ref={dragSingleSeat}
                 draggable="true"
                 style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="singleSeat.png"
@@ -144,6 +122,7 @@ function Menu() {
           >
             <button
               id="leftSeat"
+              ref={dragleftSeat}
               style={{
                 width: "100px",
                 height: "100px",
@@ -155,7 +134,6 @@ function Menu() {
             >
               <img
                 className="imgModel"
-                ref={dragleftSeat}
                 draggable="true"
                 style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="leftSeat.png"
@@ -188,6 +166,7 @@ function Menu() {
           >
             <button
               id="rightSeat"
+              ref={dragRightSeat}
               style={{
                 width: "100px",
                 height: "100px",
@@ -199,7 +178,6 @@ function Menu() {
             >
               <img
                 className="imgModel"
-                ref={dragRightSeat}
                 draggable="true"
                 style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="rightSeat.png"
@@ -223,6 +201,7 @@ function Menu() {
           >
             <button
               id="cornerSeat"
+              ref={dragCorner}
               style={{
                 width: "100px",
                 height: "100px",
@@ -234,7 +213,6 @@ function Menu() {
             >
               <img
                 className="imgModel"
-                ref={dragCorner}
                 draggable="true"
                 style={{ width: "100%", height: "100%", cursor: "pointer" }}
                 src="singleCorner.png"
