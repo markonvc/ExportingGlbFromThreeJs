@@ -7,6 +7,7 @@ class ConfigureModel {
     console.log(newModel);
     let model;
     const modelUrl = ModelUrls[newModel].modelUrl;
+    console.log(modelUrl);
 
     // scene.children.forEach((item) => {
     //   if (item.isGroup) {

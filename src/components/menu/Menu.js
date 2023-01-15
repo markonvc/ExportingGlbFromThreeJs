@@ -14,8 +14,20 @@ function Menu() {
 
   function addModel(modelName) {
     const scene = Store.scene;
+    let leftSideModel = null
+
+    scene.children.forEach(item => {
+      if (modelName === "singleSeat" && item.name === "singleSeat") {
+        leftSideModel = "singleSeatleftSide";
+      } else if (modelName === "leftSeat" && item.name === "cornerSeat") {
+        leftSideModel = "leftSeatleftSide";
+      }
+    })
+
+    console.log(leftSideModel);
     pickingOrder(modelName);
-    CofigureModelPart.loadModel(modelName, scene);
+    leftSideModel ? CofigureModelPart.loadModel(leftSideModel, scene) : CofigureModelPart.loadModel(modelName, scene)
+
   }
 
   // function changeColor() {
@@ -108,7 +120,7 @@ function Menu() {
           </div>
 
           <p style={{ textAlign: "center" }} className="add-model">
-            Add single Seat
+            Add Single Seat
           </p>
         </div>
         <div className="menu-content">
@@ -222,7 +234,7 @@ function Menu() {
           </div>
 
           <p style={{ textAlign: "center" }} className="add-model">
-            Add corner
+            Add Corner
           </p>
         </div>
       </div>
