@@ -3,22 +3,17 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
   loadModel(newModel, scene) {
-    console.log("usao u configurator");
-    console.log(newModel);
     let model;
+
+    scene.children.forEach((item) => {
+      if (item.name === "singleSeat" && newModel === "singleSeat") {
+        newModel = "singleSeatleftSide";
+      } else if (item.name === "cornerSeat" && newModel === "leftSeat") {
+        newModel = "leftSeatleftSide";
+      }
+    });
+
     const modelUrl = ModelUrls[newModel].modelUrl;
-    console.log(modelUrl);
-
-    // scene.children.forEach((item) => {
-    //   if (item.isGroup) {
-    //     item.children.forEach((mesh) => {
-    //       if (mesh.isMesh) {
-    //         mesh.position.setX(-0.24);
-    //       }
-    //     });
-    //   }
-    // });
-
     const loader = new GLTFLoader();
 
     loader.load(
@@ -29,10 +24,11 @@ class ConfigureModel {
         model.userData.name = newModel;
         model.userData.draggable = true;
         model.scale.set(3, 3, 3);
-        model.position.z = 12;
+        model.position.z = 10;
         model.position.x = -1;
+        model.position.y = 1;
 
-        // model.visible = false;
+        model.visible = false;
         scene.add(model);
         console.log(scene);
       },

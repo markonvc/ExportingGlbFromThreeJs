@@ -14,20 +14,20 @@ function Menu() {
 
   function addModel(modelName) {
     const scene = Store.scene;
-    let leftSideModel = null
+    let leftSideModel = null;
 
-    scene.children.forEach(item => {
+    scene.children.forEach((item) => {
       if (modelName === "singleSeat" && item.name === "singleSeat") {
         leftSideModel = "singleSeatleftSide";
       } else if (modelName === "leftSeat" && item.name === "cornerSeat") {
         leftSideModel = "leftSeatleftSide";
       }
-    })
+    });
 
-    console.log(leftSideModel);
     pickingOrder(modelName);
-    leftSideModel ? CofigureModelPart.loadModel(leftSideModel, scene) : CofigureModelPart.loadModel(modelName, scene)
-
+    leftSideModel
+      ? CofigureModelPart.loadModel(leftSideModel, scene)
+      : CofigureModelPart.loadModel(modelName, scene);
   }
 
   // function changeColor() {
@@ -41,6 +41,8 @@ function Menu() {
       dragRightSeat.current !== null &&
       dragCorner.current !== null
     ) {
+      console.log("j");
+      const scene = Store.scene;
       let dragImages = [];
       dragImages.push(dragSingleSeat.current);
       dragImages.push(dragleftSeat.current);

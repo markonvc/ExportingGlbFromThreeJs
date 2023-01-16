@@ -18,12 +18,15 @@ export const ModelUrls = {
     modelUrl: "models/corner.glb",
   },
   leftSeatleftSide: {
-    modelUrl: "models/leftSeatLeftSide.glb"
+    modelUrl: "models/leftSeatLeftSide.glb",
   },
   singleSeatleftSide: {
-    modelUrl: "models/singleSeatLeftSide.glb"
+    modelUrl: "models/singleSeatLeftSide.glb",
   },
   target: {
     modelUrl: "models/target.glb",
+  },
+  singleSeatTarget: {
+    modelUrl: "models/singleSeatTarget.glb",
   },
 };

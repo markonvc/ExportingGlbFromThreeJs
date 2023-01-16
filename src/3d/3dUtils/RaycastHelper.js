@@ -8,10 +8,9 @@ class Raycaster {
   moveMouse;
   model;
 
-  initializeRaycaster(scene, nModel, canvas) {
-    console.log(nModel);
-    this.model = nModel;
-    console.log(this.model);
+  initializeRaycaster(scene, canvas) {
+    // console.log(nModel);
+    // this.model = nModel;
     canvas.addEventListener("mousemove", this.mouseMove);
 
     canvas.addEventListener("click", (event) => {
@@ -22,7 +21,7 @@ class Raycaster {
 
       this.raycastClick.setFromCamera(this.clickMouse, Store.camera);
       const found = this.raycastClick.intersectObjects(scene.children);
-
+      console.log(found);
       if (found.length > 0) {
         let draggable = [];
         scene.children.forEach((item) => {
@@ -31,17 +30,20 @@ class Raycaster {
           }
         });
 
-        console.log(`find click: ${draggable}`);
+        draggable.forEach((item) => {
+          console.log(item);
+        });
 
         for (let m of found) {
           if (m.object.userData.name === "ground") {
             canvas.removeEventListener("mousemove", this.mouseMove);
             draggable.forEach((item) => {
-              console.log(item.name);
               item.position.x = -1;
-              item.position.z = 12;
+              item.position.z = 10;
               item.visible = true;
             });
+
+            draggable = [];
           }
         }
       }
@@ -49,6 +51,7 @@ class Raycaster {
   }
 
   mouseMove(e) {
+    console.log("drag");
     let draggableModel = Store.draggableModel;
     console.log(draggableModel);
     this.raycasterMove = new THREE.Raycaster();
@@ -59,6 +62,7 @@ class Raycaster {
 
     this.raycasterMove.setFromCamera(this.moveMouse, Store.camera);
     const found = this.raycasterMove.intersectObjects(Store.scene.children);
+    console.log(found.length);
 
     if (found.length > 0) {
       let draggable;
@@ -67,13 +71,11 @@ class Raycaster {
           draggable = item;
         }
       });
-      console.log(`find draggable: ${draggable}`);
 
       for (let m of found) {
         if (m.object.userData.name === "ground") {
-          console.log(m.object.userData.name);
-          draggable.position.x = m.point.x;
-          draggable.position.z = -m.point.z;
+          draggable.position.x = m.point.x + 2;
+          draggable.position.z = -m.point.z - 2;
           draggable.visible = true;
         }
       }

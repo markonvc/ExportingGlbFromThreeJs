@@ -26,7 +26,6 @@ class Viewer3D {
     Light.addLight(scene);
 
     Ground.loadGround(scene);
-    // Target.loadTarget("target", scene);
 
     function animate() {
       requestAnimationFrame(animate);
