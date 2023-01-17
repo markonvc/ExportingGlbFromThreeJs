@@ -4,18 +4,8 @@ import {
   rightSeatOrder,
   cornerSeatOrder,
 } from "./OrderHelper";
-import Store from "../store/Store";
 
 export default function pickingOrder(model) {
-  const scene = Store.scene;
-
-  // scene.children.forEach((item) => {
-  //   if (item.name === "singleSeat" && model === "singleSeat") {
-  //     model = "singleSeatleftSide";
-  //   } else if (item.name === "leftSeat" && model === "lestSeat") {
-  //     model = "leftSeatleftSide";
-  //   }
-  // });
   switch (model) {
     case "singleSeat":
       singleSeatOrder();

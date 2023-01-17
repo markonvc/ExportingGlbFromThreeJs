@@ -57,6 +57,10 @@ function leftSeatOrder() {
     leftSeatImg.style.opacity = 0.1;
     leftSeatImg.disable = true;
 
+    let cornerSeatImg = document.getElementById("cornerSeat");
+    cornerSeatImg.style.opacity = 0.1;
+    cornerSeatImg.disable = true;
+
     return;
   }
 
@@ -124,7 +128,6 @@ function rightSeatOrder() {
   let rightSeatImg = document.getElementById("rightSeat");
   rightSeatImg.style.opacity = 0.1;
   rightSeatImg.disable = true;
-
 }
 
 function cornerSeatOrder() {
@@ -144,7 +147,6 @@ function cornerSeatOrder() {
   leftSeatImg.style.opacity = 0.1;
   leftSeatImg.disable = true;
 
-
   if (scene.children.length < 5) {
     let rightSeatImg = document.getElementById("rightSeat");
     rightSeatImg.style.opacity = 0.1;
@@ -162,7 +164,6 @@ function cornerSeatOrder() {
       singleSeatImg.disable = false;
     }
   });
-
 }
 
 export { singleSeatOrder, leftSeatOrder, rightSeatOrder, cornerSeatOrder };

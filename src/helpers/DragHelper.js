@@ -39,6 +39,6 @@ function dragEnter(e) {
     ? TargetHelper.loadTarget(leftSideModel, scene)
     : TargetHelper.loadTarget(model, scene);
 
-  ConfigureModel.loadModel(model, scene);
+  ConfigureModel.loadModel(model, scene, true);
   Raycaster.initializeRaycaster(scene, this);
 }

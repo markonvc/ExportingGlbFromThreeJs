@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
-  loadModel(newModel, scene) {
+  loadModel(newModel, scene, hideModel) {
     let model;
 
     scene.children.forEach((item) => {
@@ -27,8 +27,9 @@ class ConfigureModel {
         model.position.z = 10;
         model.position.x = -1;
         model.position.y = 1;
+        // model.position.y = 1;
 
-        model.visible = false;
+        hideModel ? (model.visible = false) : (model.visible = true);
         scene.add(model);
         console.log(scene);
       },

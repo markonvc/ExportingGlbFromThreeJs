@@ -14,6 +14,7 @@ class Raycaster {
     canvas.addEventListener("mousemove", this.mouseMove);
 
     canvas.addEventListener("click", (event) => {
+      console.log(event);
       this.raycastClick = new THREE.Raycaster();
       this.clickMouse = new THREE.Vector2();
       this.clickMouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -21,17 +22,16 @@ class Raycaster {
 
       this.raycastClick.setFromCamera(this.clickMouse, Store.camera);
       const found = this.raycastClick.intersectObjects(scene.children);
+      console.log(this.raycastClick);
       console.log(found);
+      console.log(this.clickMouse.x, this.clickMouse.y);
+
       if (found.length > 0) {
         let draggable = [];
         scene.children.forEach((item) => {
           if (item.isGroup) {
             draggable.push(item);
           }
-        });
-
-        draggable.forEach((item) => {
-          console.log(item);
         });
 
         for (let m of found) {
@@ -51,9 +51,7 @@ class Raycaster {
   }
 
   mouseMove(e) {
-    console.log("drag");
     let draggableModel = Store.draggableModel;
-    console.log(draggableModel);
     this.raycasterMove = new THREE.Raycaster();
     this.moveMouse = new THREE.Vector2();
 
@@ -62,7 +60,6 @@ class Raycaster {
 
     this.raycasterMove.setFromCamera(this.moveMouse, Store.camera);
     const found = this.raycasterMove.intersectObjects(Store.scene.children);
-    console.log(found.length);
 
     if (found.length > 0) {
       let draggable;

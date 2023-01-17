@@ -26,7 +26,7 @@ function Menu() {
 
     pickingOrder(modelName);
     leftSideModel
-      ? CofigureModelPart.loadModel(leftSideModel, scene)
+      ? CofigureModelPart.loadModel(leftSideModel, scene, false)
       : CofigureModelPart.loadModel(modelName, scene);
   }
 
@@ -41,8 +41,6 @@ function Menu() {
       dragRightSeat.current !== null &&
       dragCorner.current !== null
     ) {
-      console.log("j");
-      const scene = Store.scene;
       let dragImages = [];
       dragImages.push(dragSingleSeat.current);
       dragImages.push(dragleftSeat.current);
