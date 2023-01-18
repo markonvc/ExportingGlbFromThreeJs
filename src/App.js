@@ -18,6 +18,7 @@ function App() {
     showDeleteButtonRightSeat,
     showDeleteButtonSingleLeftSeat,
     showDeleteButtonLeftSideSeat,
+    showDeleteButtonCornerSeat,
   } = useContext(ButtonContext);
 
   function getMobileOperatingSystem() {
@@ -61,6 +62,7 @@ function App() {
         {showDeleteButtonSingleSeat && <DeleteModel model="singleSeat" />}
         {showDeleteButtonLeftSeat && <DeleteModel model="leftSeat" />}
         {showDeleteButtonRightSeat && <DeleteModel model="rightSeat" />}
+        {showDeleteButtonCornerSeat && <DeleteModel model="cornerSeat" />}
         {showDeleteButtonSingleLeftSeat && (
           <DeleteModel model="singleSeatleftSide" />
         )}

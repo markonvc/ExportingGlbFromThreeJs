@@ -10,13 +10,14 @@ function DeleteModel({ model }) {
     setShowDeleteButtonRightSeat,
     setShowDeleteButtonSingleLeftSeat,
     setShowDeleteButtonLeftSideSeat,
+    setShowDeleteButtonCornerSeatSeat,
   } = useContext(ButtonContext);
 
   function deleteSelectedModel() {
     const scene = Store.scene;
 
     scene.children.forEach((item) => {
-      if (item.isGroup && item.name === model) {
+      if (item.isGroup && item.name.includes(model)) {
         item.children[0].children.forEach((objectModel) => {
           objectModel.children.forEach((mesh) => {
             if (mesh.isMesh) {
@@ -41,10 +42,19 @@ function DeleteModel({ model }) {
             break;
           case "leftSeatleftSide":
             setShowDeleteButtonLeftSideSeat(false);
+            break;
+          case "cornerSeat":
+            setShowDeleteButtonCornerSeatSeat(false);
+            break;
           default:
             console.log("error setting delete button hidden");
         }
         scene.remove(item);
+        console.log(scene);
+        let modelDeletedImg = document.getElementById(model);
+        console.log(modelDeletedImg);
+        modelDeletedImg.style.opacity = 1;
+        modelDeletedImg.disable = false;
       }
     });
 

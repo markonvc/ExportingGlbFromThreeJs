@@ -13,6 +13,8 @@ export const ButtonContextProvider = (props) => {
     useState(true);
   const [showDeleteButtonLeftSideSeat, setShowDeleteButtonLeftSideSeat] =
     useState(true);
+  const [showDeleteButtonCornerSeat, setShowDeleteButtonCornerSeatSeat] =
+    useState(true);
 
   const buttonContextvalue = {
     showDeleteButtonSingleSeat,
@@ -20,11 +22,13 @@ export const ButtonContextProvider = (props) => {
     showDeleteButtonRightSeat,
     showDeleteButtonSingleLeftSeat,
     showDeleteButtonLeftSideSeat,
+    showDeleteButtonCornerSeat,
     setShowDeleteButtonSingleSeat,
     setShowDeleteButtonLeftSeat,
     setShowDeleteButtonRightSeat,
     setShowDeleteButtonSingleLeftSeat,
     setShowDeleteButtonLeftSideSeat,
+    setShowDeleteButtonCornerSeatSeat,
   };
 
   return (

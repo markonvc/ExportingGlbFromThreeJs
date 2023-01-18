@@ -16,7 +16,7 @@ class Target {
         model.position.z = 10;
         model.position.x = -1;
         model.position.y = 1;
-        model.name = targetModel + "target";
+        model.name = targetModel + "Target";
         // model.material.color = "black";
         scene.add(model);
         console.log(scene);

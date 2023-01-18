@@ -4,7 +4,6 @@ import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
   loadModel(newModel, scene, hideModel) {
     let model;
-    console.log(newModel);
     scene.children.forEach((item) => {
       if (item.name === "singleSeat" && newModel === "singleSeat") {
         newModel = "singleSeatleftSide";
@@ -20,7 +19,13 @@ class ConfigureModel {
       ? (document.getElementById("canvasContainer").style.zIndex = -2)
       : (document.getElementById("canvasContainer").style.zIndex = 2);
 
-    console.log(document.getElementById("canvasContainer").style.zIndex);
+    if (newModel === "leftSeat") {
+      document.getElementById("delete_cornerSeat").style.display = "none";
+      document.getElementById("delete_leftSeat").style.display = "flex";
+    } else if (newModel === "cornerSeat") {
+      document.getElementById("delete_cornerSeat").style.display = "flex";
+      document.getElementById("delete_leftSeat").style.display = "none";
+    }
 
     loader.load(
       modelUrl,
@@ -43,10 +48,8 @@ class ConfigureModel {
           scene.children.forEach((item) => {
             console.log(item.name);
             if (item.isGroup && item.name === newModel) {
-              let css;
-              newModel === "cornerSeat"
-                ? (css = `.leftSeat:hover{ opacity: 1; zIndex: 0 }`)
-                : (css = `.${newModel}:hover{ opacity: 1 }`);
+              console.log(newModel);
+              let css = `.${newModel}:hover{ opacity: 1 }`;
               let style = document.createElement("style");
 
               if (style.styleSheet) {

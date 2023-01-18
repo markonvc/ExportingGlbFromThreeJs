@@ -44,13 +44,8 @@ class Raycaster {
               document.getElementById("canvasContainer").style.zIndex = -2;
 
               scene.children.forEach((currentModel) => {
-                console.log(currentModel.name);
                 if (currentModel.isGroup && currentModel.name === item.name) {
-                  console.log(currentModel.name);
-                  let css;
-                  item.name === "cornerSeat"
-                    ? (css = `.leftSeat:hover{ opacity: 1; zIndex: 0 }`)
-                    : (css = `.${item.name}:hover{ opacity: 1 }`);
+                  let css = `.${item.name}:hover{ opacity: 1 }`;
                   let style = document.createElement("style");
 
                   if (style.styleSheet) {
