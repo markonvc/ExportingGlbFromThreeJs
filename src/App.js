@@ -1,5 +1,7 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { ButtonContext } from "./context/ButtonContext";
 import Viewer3D from "./3d/SceneHelper";
+import DeleteModel from "./components/deleteButton/DeleteModel";
 import Menu from "./components/menu/Menu";
 import OpenInAr from "./components/openInAr/OpenInAr";
 import ModelViewer from "./components/mv/ModelViewer";
@@ -9,6 +11,14 @@ import "./App.css";
 
 function App() {
   const webgl = useRef(null);
+
+  const {
+    showDeleteButtonSingleSeat,
+    showDeleteButtonLeftSeat,
+    showDeleteButtonRightSeat,
+    showDeleteButtonSingleLeftSeat,
+    showDeleteButtonLeftSideSeat,
+  } = useContext(ButtonContext);
 
   function getMobileOperatingSystem() {
     var userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -48,6 +58,15 @@ function App() {
         ></div>
 
         <Menu />
+        {showDeleteButtonSingleSeat && <DeleteModel model="singleSeat" />}
+        {showDeleteButtonLeftSeat && <DeleteModel model="leftSeat" />}
+        {showDeleteButtonRightSeat && <DeleteModel model="rightSeat" />}
+        {showDeleteButtonSingleLeftSeat && (
+          <DeleteModel model="singleSeatleftSide" />
+        )}
+        {showDeleteButtonLeftSideSeat && (
+          <DeleteModel model="leftSeatleftSide" />
+        )}
       </div>
 
       {getMobileOperatingSystem()}

@@ -41,6 +41,28 @@ class Raycaster {
               item.position.x = -1;
               item.position.z = 10;
               item.visible = true;
+              document.getElementById("canvasContainer").style.zIndex = -2;
+
+              scene.children.forEach((currentModel) => {
+                console.log(currentModel.name);
+                if (currentModel.isGroup && currentModel.name === item.name) {
+                  console.log(currentModel.name);
+                  let css;
+                  item.name === "cornerSeat"
+                    ? (css = `.leftSeat:hover{ opacity: 1; zIndex: 0 }`)
+                    : (css = `.${item.name}:hover{ opacity: 1 }`);
+                  let style = document.createElement("style");
+
+                  if (style.styleSheet) {
+                    style.styleSheet.cssText = css;
+                  } else {
+                    console.log(style);
+                    style.appendChild(document.createTextNode(css));
+                  }
+
+                  document.getElementsByTagName("head")[0].appendChild(style);
+                }
+              });
             });
 
             draggable = [];

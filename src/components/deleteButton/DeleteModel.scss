@@ -1,6 +1,101 @@
 .singleSeat {
-  width: 50px;
-  height: 50px;
+  position: fixed;
+  top: 21%;
+  left: 30%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.leftSeat {
+  position: fixed;
+  top: 22%;
+  left: 23%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.rightSeat {
+  position: fixed;
+  top: 20%;
+  left: 37%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.singleSeatleftSide {
+  position: fixed;
+  top: 30%;
+  left: 23%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.cornerSeat {
+  position: fixed;
+  top: 22%;
+  left: 23%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.leftSeatleftSide {
+  position: fixed;
+  top: 40%;
+  left: 23%;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: 1;
+  cursor: grab;
+}
+
+.deleteButton {
+  margin: 0;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  line-height: 30px;
+  border: 2px solid white;
   border-radius: 50%;
-  border: 2px solid red;
+  background: transparent;
+  color: white;
+  font-weight: bolder;
+  cursor: grab;
 }
