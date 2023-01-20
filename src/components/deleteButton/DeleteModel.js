@@ -51,6 +51,7 @@ function DeleteModel({ model }) {
         }
         scene.remove(item);
         console.log(scene);
+        console.log(model);
         let modelDeletedImg = document.getElementById(model);
         console.log(modelDeletedImg);
         modelDeletedImg.style.opacity = 1;
