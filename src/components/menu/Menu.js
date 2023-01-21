@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext, useState } from "react";
+import { ButtonContext } from "../../context/ButtonContext";
+import { PickingOrderContext } from "../../context/PickingOrderContext";
 import CofigureModelPart from "../../3d/3dUtils/ConfigureModelPart";
 // import ColorHelper from "../../3d/3dUtils/ColorHelper";
 import { dragStart } from "../../helpers/DragHelper";
@@ -11,12 +13,25 @@ function Menu() {
   const dragleftSeat = useRef(null);
   const dragRightSeat = useRef(null);
   const dragCorner = useRef(null);
+  const [currentModel, setCurrentModel] = useState(null);
+
+  const {
+    setShowDeleteButtonSingleSeat,
+    setShowDeleteButtonLeftSeat,
+    setShowDeleteButtonRightSeat,
+    setShowDeleteButtonSingleLeftSeat,
+    setShowDeleteButtonLeftSideSeat,
+    setShowDeleteButtonCornerSeatSeat,
+  } = useContext(ButtonContext);
+
+  const { orderPicking, setOrderPicking } = useContext(PickingOrderContext);
 
   function addModel(modelName) {
-    const scene = Store.scene;
-    let leftSideModel = null;
+    let modelImg = document.getElementById(modelName)
+    if (modelImg.disabled) return;
 
-    scene.children.forEach((item) => {
+    let leftSideModel = null;
+    Store.scene.children.forEach((item) => {
       if (modelName === "singleSeat" && item.name === "singleSeat") {
         leftSideModel = "singleSeatleftSide";
       } else if (modelName === "leftSeat" && item.name === "cornerSeat") {
@@ -24,15 +39,72 @@ function Menu() {
       }
     });
 
-    pickingOrder(modelName);
-    leftSideModel
-      ? CofigureModelPart.loadModel(leftSideModel, scene, false)
-      : CofigureModelPart.loadModel(modelName, scene);
+    const loadedModels = Store.loadedModels;
+    leftSideModel ? setCurrentModel(leftSideModel) : setCurrentModel(modelName);
+
+    let repeatingModel = loadedModels.filter(item => {
+      return item === modelName
+    })
+    if (repeatingModel.length === 0) setOrderPicking(true)
+
+    leftSideModel ? loadedModels.push(leftSideModel) : loadedModels.push(modelName)
+
+    console.log(repeatingModel);
   }
 
   // function changeColor() {
   //   ColorHelper.changeColor();
   // }
+
+  useEffect(() => {
+    if (Store.loadedModels.length === 0 || !currentModel) return
+    const scene = Store.scene;
+
+    switch (currentModel) {
+      case "singleSeat":
+        setShowDeleteButtonSingleSeat(true);
+        break;
+      case "leftSeat":
+        setShowDeleteButtonLeftSeat(true);
+        break;
+      case "rightSeat":
+        setShowDeleteButtonRightSeat(true);
+        break;
+      case "singleSeatleftSide":
+        setShowDeleteButtonSingleLeftSeat(true);
+        break;
+      case "leftSeatleftSide":
+        setShowDeleteButtonLeftSideSeat(true);
+        break;
+      case "cornerSeat":
+        setShowDeleteButtonCornerSeatSeat(true);
+        break;
+      default:
+        console.log("error setting delete button hidden");
+    }
+
+    orderPicking && pickingOrder(currentModel);
+    CofigureModelPart.loadModel(currentModel, scene);
+
+    console.log(currentModel);
+
+    if (currentModel === "singleSeatleftSide") {
+      let modelImg = document.getElementById("singleSeat");
+      modelImg.style.opacity = 0.1;
+      modelImg.disabled = true;
+    } else if (currentModel === "leftSeatleftSide") {
+      let modelImg = document.getElementById("leftSeat");
+      modelImg.style.opacity = 0.1;
+      modelImg.disabled = true;
+    } else {
+      let modelImg = document.getElementById(currentModel);
+      modelImg.style.opacity = 0.1;
+      modelImg.disabled = true;
+    }
+
+    setCurrentModel(null);
+
+  }, [currentModel])
 
   useEffect(() => {
     if (
@@ -49,12 +121,53 @@ function Menu() {
 
       dragImages.forEach((img) => {
         img.addEventListener("dragstart", (e) => {
+          let modelImg = document.getElementById(img.id)
+          if (modelImg.disabled) return;
           setTimeout(() => {
             e.target.style.opacity = "0.1";
             e.target.style.setProperty("cursor", "grab", "important");
           }, 0);
 
-          dragStart(img.id);
+          let modelToLoad = img.id;
+
+          Store.scene.children.forEach(item => {
+            if (item.name === "singleSeat" && modelToLoad === "singleSeat") {
+              modelToLoad = "singleSeatleftSide"
+            } else if (item.name === "cornerSeat" && modelToLoad === "leftSeat") {
+              modelToLoad = "leftSeatleftSide"
+            }
+          })
+
+          console.log(modelToLoad);
+
+          switch (modelToLoad) {
+            case "singleSeat":
+              setShowDeleteButtonSingleSeat(true);
+              break;
+            case "leftSeat":
+              setShowDeleteButtonLeftSeat(true);
+              break;
+            case "rightSeat":
+              setShowDeleteButtonRightSeat(true);
+              break;
+            case "singleSeatleftSide":
+              setShowDeleteButtonSingleLeftSeat(true);
+              break;
+            case "leftSeatleftSide":
+              setShowDeleteButtonLeftSideSeat(true);
+              break;
+            case "cornerSeat":
+              setShowDeleteButtonCornerSeatSeat(true);
+              break;
+            default:
+              console.log("error setting delete button hidden");
+          }
+
+          const loadedModels = Store.loadedModels;
+          loadedModels.push(modelToLoad);
+
+          dragStart(modelToLoad);
+
         });
       });
 

@@ -7,11 +7,11 @@ function singleSeatOrder() {
     console.log(scene.children);
     let leftSeatImg = document.getElementById("leftSeat");
     leftSeatImg.style.opacity = 1;
-    leftSeatImg.disable = false;
+    leftSeatImg.disabled = false;
 
     let singleSeatImg = document.getElementById("singleSeat");
     singleSeatImg.style.opacity = 0.1;
-    singleSeatImg.disable = true;
+    singleSeatImg.disabled = true;
 
     return;
   }
@@ -20,67 +20,68 @@ function singleSeatOrder() {
     if (item.name === "cornerSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 1;
-      rightSeatImg.disable = false;
+      rightSeatImg.disabled = false;
 
       let singleSeatImg = document.getElementById("singleSeat");
       singleSeatImg.style.opacity = 1;
-      singleSeatImg.disable = false;
+      singleSeatImg.disabled = false;
     } else if (item.name === "rightSeat") {
       let leftSeatImg = document.getElementById("leftSeat");
       leftSeatImg.style.opacity = 1;
-      leftSeatImg.disable = false;
+      leftSeatImg.disabled = false;
 
       let cornerSeatImg = document.getElementById("cornerSeat");
       cornerSeatImg.style.opacity = 1;
-      cornerSeatImg.disable = false;
+      cornerSeatImg.disabled = false;
     } else if (item.name === "singleSeat") {
       let leftSeatImg = document.getElementById("leftSeat");
       leftSeatImg.style.opacity = 1;
-      leftSeatImg.disable = false;
+      leftSeatImg.disabled = false;
     } else if (item.name === "leftSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 1;
-      rightSeatImg.disable = false;
+      rightSeatImg.disabled = false;
     }
   });
   let singleSeatImg = document.getElementById("singleSeat");
   singleSeatImg.style.opacity = 0.1;
-  singleSeatImg.disable = true;
+  singleSeatImg.disabled = true;
+  console.log(singleSeatImg.disabled);
 }
 
 function leftSeatOrder() {
   let scene = Store.scene;
   console.log(scene.children.length);
   if (scene.children.length >= 8) {
-    console.log(scene.children);
+    console.log("yyy");
     let leftSeatImg = document.getElementById("leftSeat");
     leftSeatImg.style.opacity = 0.1;
-    leftSeatImg.disable = true;
+    leftSeatImg.disabled = true;
 
     let cornerSeatImg = document.getElementById("cornerSeat");
     cornerSeatImg.style.opacity = 0.1;
-    cornerSeatImg.disable = true;
+    cornerSeatImg.disabled = true;
 
     return;
   }
 
   let leftSeatImg = document.getElementById("leftSeat");
   leftSeatImg.style.opacity = 0.1;
-  leftSeatImg.disable = true;
+  leftSeatImg.disabled = true;
 
   let cornerSeatImg = document.getElementById("cornerSeat");
   cornerSeatImg.style.opacity = 0.1;
-  cornerSeatImg.disable = true;
+  cornerSeatImg.disabled = true;
 
   let rightSeatImg = document.getElementById("rightSeat");
   rightSeatImg.style.opacity = 0.1;
-  rightSeatImg.disable = true;
+  rightSeatImg.disabled = true;
 
   scene.children.forEach((item) => {
     if (item.name === "singleSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 1;
-      rightSeatImg.disable = false;
+      rightSeatImg.disabled = false;
     }
   });
 
@@ -88,7 +89,7 @@ function leftSeatOrder() {
     if (item.name === "rightSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 0.1;
-      rightSeatImg.disable = true;
+      rightSeatImg.disabled = true;
     }
   });
 }
@@ -99,35 +100,35 @@ function rightSeatOrder() {
     if (item.name === "singleSeat" && scene.children < 4) {
       let leftSeatImg = document.getElementById("leftSeat");
       leftSeatImg.style.opacity = 1;
-      leftSeatImg.disable = false;
+      leftSeatImg.disabled = false;
 
       let cornerSeatImg = document.getElementById("cornerSeat");
       cornerSeatImg.style.opacity = 1;
-      cornerSeatImg.disable = false;
+      cornerSeatImg.disabled = false;
     } else if (item.name === "cornerSeat") {
       let singleSeatImg = document.getElementById("singleSeat");
       singleSeatImg.style.opacity = 1;
-      singleSeatImg.disable = false;
+      singleSeatImg.disabled = false;
     }
   });
 
   if (scene.children.length === 4) {
     let rightSeatImg = document.getElementById("rightSeat");
     rightSeatImg.style.opacity = 0.1;
-    rightSeatImg.disable = true;
+    rightSeatImg.disabled = true;
 
     let cornerSeatImg = document.getElementById("cornerSeat");
     cornerSeatImg.style.opacity = 0.1;
-    cornerSeatImg.disable = true;
+    cornerSeatImg.disabled = true;
 
     let leftSeatImg = document.getElementById("leftSeat");
     leftSeatImg.style.opacity = 0.1;
-    leftSeatImg.disable = true;
+    leftSeatImg.disabled = true;
   }
 
   let rightSeatImg = document.getElementById("rightSeat");
   rightSeatImg.style.opacity = 0.1;
-  rightSeatImg.disable = true;
+  rightSeatImg.disabled = true;
 }
 
 function cornerSeatOrder() {
@@ -136,32 +137,32 @@ function cornerSeatOrder() {
     if (item.name === "singleSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 1;
-      rightSeatImg.disable = false;
+      rightSeatImg.disabled = false;
     }
   });
   let cornerSeatImg = document.getElementById("cornerSeat");
   cornerSeatImg.style.opacity = 0.1;
-  cornerSeatImg.disable = true;
+  cornerSeatImg.disabled = true;
 
   let leftSeatImg = document.getElementById("leftSeat");
   leftSeatImg.style.opacity = 0.1;
-  leftSeatImg.disable = true;
+  leftSeatImg.disabled = true;
 
   if (scene.children.length < 5) {
     let rightSeatImg = document.getElementById("rightSeat");
     rightSeatImg.style.opacity = 0.1;
-    rightSeatImg.disable = true;
+    rightSeatImg.disabled = true;
   }
 
   scene.children.forEach((item) => {
     if (item.name === "rightSeat") {
       let rightSeatImg = document.getElementById("rightSeat");
       rightSeatImg.style.opacity = 0.1;
-      rightSeatImg.disable = true;
+      rightSeatImg.disabled = true;
 
       let singleSeatImg = document.getElementById("singleSeat");
       singleSeatImg.style.opacity = 1;
-      singleSeatImg.disable = false;
+      singleSeatImg.disabled = false;
     }
   });
 }

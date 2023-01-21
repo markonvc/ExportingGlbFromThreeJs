@@ -4,13 +4,6 @@ import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
   loadModel(newModel, scene, hideModel) {
     let model;
-    scene.children.forEach((item) => {
-      if (item.name === "singleSeat" && newModel === "singleSeat") {
-        newModel = "singleSeatleftSide";
-      } else if (item.name === "cornerSeat" && newModel === "leftSeat") {
-        newModel = "leftSeatleftSide";
-      }
-    });
 
     const modelUrl = ModelUrls[newModel].modelUrl;
     const loader = new GLTFLoader();
@@ -20,11 +13,26 @@ class ConfigureModel {
       : (document.getElementById("canvasContainer").style.zIndex = 2);
 
     if (newModel === "leftSeat") {
-      document.getElementById("delete_cornerSeat").style.display = "none";
-      document.getElementById("delete_leftSeat").style.display = "flex";
+      setTimeout(() => {
+        document.getElementById("delete_leftSeat").style.display = "flex";
+        try {
+          document.getElementById("delete_cornerSeat").style.display = "none";
+        } catch (error) {
+          console.log(error);
+        }
+      }, 1500)
+
     } else if (newModel === "cornerSeat") {
-      document.getElementById("delete_cornerSeat").style.display = "flex";
-      document.getElementById("delete_leftSeat").style.display = "none";
+      setTimeout(() => {
+        document.getElementById("delete_cornerSeat").style.display = "flex";
+        try {
+          document.getElementById("delete_leftSeat").style.display = "none";
+        } catch (error) {
+          console.log(error);
+        }
+
+      }, 1500)
+
     }
 
     loader.load(

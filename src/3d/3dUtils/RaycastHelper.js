@@ -45,6 +45,7 @@ class Raycaster {
 
               scene.children.forEach((currentModel) => {
                 if (currentModel.isGroup && currentModel.name === item.name) {
+                  console.log(item.name);
                   let css = `.${item.name}:hover{ opacity: 1 }`;
                   let style = document.createElement("style");
 
@@ -80,6 +81,7 @@ class Raycaster {
 
     if (found.length > 0) {
       let draggable;
+      console.log(draggableModel);
       Store.scene.children.forEach((item) => {
         if (item.isGroup && item.name === draggableModel) {
           draggable = item;
