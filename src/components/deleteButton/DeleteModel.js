@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { ButtonContext } from "../../context/ButtonContext";
-import { PickingOrderContext } from "../../context/PickingOrderContext";
+import { single } from "../../helpers/OrderHelper";
 import Store from "../../store/Store";
 import "./DeleteModel.scss";
 
@@ -13,8 +13,6 @@ function DeleteModel({ model }) {
     setShowDeleteButtonLeftSideSeat,
     setShowDeleteButtonCornerSeatSeat,
   } = useContext(ButtonContext);
-
-  const { setOrderPicking } = useContext(PickingOrderContext);
 
   function deleteSelectedModel() {
     const scene = Store.scene;
@@ -44,37 +42,38 @@ function DeleteModel({ model }) {
             break;
           case "singleSeatleftSide":
             setShowDeleteButtonSingleLeftSeat(false);
+            setShowDeleteButtonRightSeat(true);
+            setShowDeleteButtonSingleSeat(true);
+            setShowDeleteButtonCornerSeatSeat(true);
             break;
           case "leftSeatleftSide":
             setShowDeleteButtonLeftSideSeat(false);
+            setShowDeleteButtonRightSeat(true);
+            setShowDeleteButtonSingleSeat(true);
+            setShowDeleteButtonCornerSeatSeat(true);
             break;
           case "cornerSeat":
             setShowDeleteButtonCornerSeatSeat(false);
+            setShowDeleteButtonRightSeat(true);
+            setShowDeleteButtonSingleSeat(true);
             break;
           default:
             console.log("error setting delete button hidden");
         }
 
         scene.remove(item);
+        single()
 
-        setOrderPicking(false);
+        if (model === "singleSeat") {
+          scene.children.forEach(item => {
+            if (item.name === "leftSeat") {
+              item.position.x = 0;
+            }
 
-        let modelDeletedImg
-        model === "singleSeatleftSide" ? modelDeletedImg = document.getElementById("singleSeat") :
-          model === "leftSeatleftSide" ? modelDeletedImg = document.getElementById("leftSeat") :
-            modelDeletedImg = document.getElementById(model)
-        modelDeletedImg.style.opacity = 1;
-        modelDeletedImg.disabled = false;
-
-        if (model === "leftSeat") {
-          console.log("fffrrr");
-          let cornerSeatImg = document.getElementById("cornerSeat");
-          cornerSeatImg.style.opacity = 1;
-          cornerSeatImg.disabled = false
-        } else if (model === "cornerSeat") {
-          let leftSeatImg = document.getElementById("leftSeat");
-          leftSeatImg.style.opacity = 1;
-          leftSeatImg.disabled = false
+            if (item.name === "rightSeat") {
+              item.position.x = -2.15;
+            }
+          })
         }
 
       } else if (item.isGroup && item.name.includes(model)) {

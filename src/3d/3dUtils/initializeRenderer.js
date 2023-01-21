@@ -8,7 +8,10 @@ class InitializeRenderer {
     });
 
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth * 0.65, window.innerHeight * 0.6);
+    if (window.innerWidth > 999) {
+      renderer.setSize(window.innerWidth * 0.65, window.innerHeight * 0.6);
+    } else renderer.setSize(window.innerWidth, window.innerHeight * 0.6);
+
     renderer.shadowMap.enabled = true;
     this.initializeDOM(renderer, canvas);
 

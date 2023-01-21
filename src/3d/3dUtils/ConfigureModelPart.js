@@ -2,7 +2,7 @@ import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { ModelUrls } from "../../mockData/ModelUrls";
 class ConfigureModel {
-  loadModel(newModel, scene, hideModel) {
+  loadModel(newModel, scene, hideModel, setOrderImages) {
     let model;
 
     const modelUrl = ModelUrls[newModel].modelUrl;
@@ -50,11 +50,10 @@ class ConfigureModel {
 
         hideModel ? (model.visible = false) : (model.visible = true);
         scene.add(model);
-        console.log(scene);
+        setOrderImages(true);
 
         if (!hideModel) {
           scene.children.forEach((item) => {
-            console.log(item.name);
             if (item.isGroup && item.name === newModel) {
               console.log(newModel);
               let css = `.${newModel}:hover{ opacity: 1 }`;
