@@ -25,17 +25,19 @@ function ModelViewer() {
   }, [overlay]);
 
   useEffect(() => {
-    if (mv.current !== null) {
+    if (mv.current !== null && enterAr) {
+      alert("enter mv");
       const mvElement = mv.current;
       console.log(Store.modelHref);
       mvElement.addEventListener("load", () => {
         try {
           mvElement.activateAR();
+
           setTimeout(() => {
             setOverlay(false);
             URL.revokeObjectURL(Store.modelHref);
           }, 2000);
-        } catch (error) {}
+        } catch (error) { alert(error); }
       });
     }
   }, [enterAr]);

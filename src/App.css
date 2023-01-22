@@ -9,3 +9,9 @@
     height: 60vh;
   }
 }
+
+@media(max-width: 999px) {
+  body {
+    display: none;
+  }
+}

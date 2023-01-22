@@ -8,13 +8,13 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
 .leftSeat {
   position: fixed;
-  top: 22%;
+  top: 21%;
   left: 23%;
   width: 100px;
   height: 100px;
@@ -22,7 +22,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
@@ -36,21 +36,21 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
 .singleSeatleftSide {
   position: fixed;
-  top: 30%;
+  top: 31%;
   left: 23%;
   width: 100px;
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
@@ -64,7 +64,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
@@ -73,12 +73,12 @@
   top: 40%;
   left: 23%;
   width: 100px;
-  height: 100px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 1;
+  z-index: 2;
   cursor: grab;
 }
 
@@ -98,4 +98,91 @@
   color: white;
   font-weight: bolder;
   cursor: grab;
+}
+
+@media(max-width: 1200px) {
+  .singleSeat {
+    top: 24%;
+    left: 31%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .leftSeat {
+    top: 24%;
+    left: 24%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .rightSeat {
+    top: 23%;
+    left: 38%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .singleSeatleftSide {
+    top: 32%;
+    left: 24%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .cornerSeat {
+    top: 24%;
+    left: 24%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .leftSeatleftSide {
+    top: 40%;
+    left: 24%;
+    width: 70px;
+    height: 70px;
+  }
+
+  .deleteButton {
+    width: 22px;
+    height: 22px;
+    line-height: 22px;
+  }
+}
+
+@media(max-width: 1500px) {
+  .singleSeat {
+    width: 80px;
+    height: 80px;
+  }
+
+  .leftSeat {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .rightSeat {
+    width: 80px;
+    height: 80px;
+  }
+
+  .singleSeatleftSide {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .cornerSeat {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+  }
+
+  .leftSeatleftSide {
+    left: 25%;
+    width: 80px;
+    height: 80px;
+  }
+
 }

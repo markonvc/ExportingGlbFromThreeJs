@@ -25,7 +25,7 @@ class ExportGlb {
         }
       },
       (error) => {
-        console.log("An error happened during parsing", error);
+        alert("An error happened during parsing", error);
       },
       {
         binary: false,
@@ -34,16 +34,18 @@ class ExportGlb {
   }
 
   save(blob, fileName, setEnterAr) {
-    // Store.modelHref = URL.createObjectURL(blob);
-    // setEnterAr(true);
-    const link = document.createElement('a')
-    document.body.appendChild(link)
-    link.href = URL.createObjectURL(blob);
-    link.download = fileName;
-    link.click();
+    Store.modelHref = URL.createObjectURL(blob);
+    alert(Store.modelHref)
+    setEnterAr(true);
+    // const link = document.createElement('a')
+    // document.body.appendChild(link)
+    // link.href = URL.createObjectURL(blob);
+    // link.download = fileName;
+    // link.click();
   }
 
   saveArrayBuffer(buffer, fileName, setEnterAr) {
+    alert("binari")
     this.save(
       new Blob([buffer], { type: "application/octet-stream" }),
       fileName,
@@ -52,6 +54,7 @@ class ExportGlb {
   }
 
   saveString(text, fileName, setEnterAr) {
+    alert("text")
     this.save(new Blob([text], { type: "text/plain" }), fileName, setEnterAr);
   }
 }

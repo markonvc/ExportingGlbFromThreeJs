@@ -64,13 +64,21 @@ function DeleteModel({ model }) {
         scene.remove(item);
         single()
 
-        if (model === "singleSeat") {
+        let rightSeat = scene.children.filter(item => {
+          return item.name === "leftSeat"
+        })
+
+        let leftSeat = scene.children.filter(item => {
+          return item.name === "rightSeat"
+        })
+
+        if (model === "singleSeat" && rightSeat.length > 0 && leftSeat.length > 0) {
           scene.children.forEach(item => {
             if (item.name === "leftSeat") {
               item.position.x = 0;
             }
 
-            if (item.name === "rightSeat") {
+            if (item.name === "rightSeat" && rightSeat.length > 0 && leftSeat.length > 0) {
               item.position.x = -2.15;
             }
           })

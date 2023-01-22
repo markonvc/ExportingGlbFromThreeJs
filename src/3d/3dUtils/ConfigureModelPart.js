@@ -62,7 +62,6 @@ class ConfigureModel {
               if (style.styleSheet) {
                 style.styleSheet.cssText = css;
               } else {
-                console.log(style);
                 style.appendChild(document.createTextNode(css));
               }
 
