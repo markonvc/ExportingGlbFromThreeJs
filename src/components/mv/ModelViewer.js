@@ -26,7 +26,6 @@ function ModelViewer() {
 
   useEffect(() => {
     if (mv.current !== null && enterAr) {
-      alert("enter mv");
       const mvElement = mv.current;
       console.log(Store.modelHref);
       mvElement.addEventListener("load", () => {
@@ -37,7 +36,9 @@ function ModelViewer() {
             setOverlay(false);
             URL.revokeObjectURL(Store.modelHref);
           }, 2000);
-        } catch (error) { alert(error); }
+        } catch (error) {
+          console.log(error);
+        }
       });
     }
   }, [enterAr]);

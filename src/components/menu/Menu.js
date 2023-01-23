@@ -25,10 +25,10 @@ function Menu() {
   } = useContext(ButtonContext);
 
   function addModel(modelName) {
-    setOrderImages(false)
-    let modelImg = document.getElementById(modelName)
+    setOrderImages(false);
+    let modelImg = document.getElementById(modelName);
     if (modelImg.disabled) return;
-    console.log("tttt");
+
     let leftSideModel = null;
     Store.scene.children.forEach((item) => {
       if (modelName === "singleSeat" && item.name === "singleSeat") {
@@ -41,15 +41,15 @@ function Menu() {
     leftSideModel ? setCurrentModel(leftSideModel) : setCurrentModel(modelName);
 
     if (modelName === "singleSeat") {
-      Store.scene.children.forEach(item => {
+      Store.scene.children.forEach((item) => {
         if (item.name === "leftSeat") {
-          item.position.x = -1
+          item.position.x = -1;
         }
 
         if (item.name === "rightSeat") {
-          item.position.x = -1
+          item.position.x = -1;
         }
-      })
+      });
     }
   }
 
@@ -58,14 +58,14 @@ function Menu() {
   // }
 
   useEffect(() => {
-    if (!currentModel) return
+    if (!currentModel) return;
     const scene = Store.scene;
 
     switch (currentModel) {
       case "singleSeat":
-        let cornerSeat = scene.children.filter(item => {
-          return item.name === "cornerSeat"
-        })
+        let cornerSeat = scene.children.filter((item) => {
+          return item.name === "cornerSeat";
+        });
         if (cornerSeat.length > 0) {
           setShowDeleteButtonSingleSeat(false);
         } else setShowDeleteButtonSingleSeat(true);
@@ -74,9 +74,9 @@ function Menu() {
         setShowDeleteButtonLeftSeat(true);
         break;
       case "rightSeat":
-        let corner = scene.children.filter(item => {
-          return item.name === "cornerSeat"
-        })
+        let corner = scene.children.filter((item) => {
+          return item.name === "cornerSeat";
+        });
         if (corner.length > 0) {
           setShowDeleteButtonRightSeat(false);
         } else setShowDeleteButtonRightSeat(true);
@@ -105,13 +105,12 @@ function Menu() {
 
     CofigureModelPart.loadModel(currentModel, scene, false, setOrderImages);
     setCurrentModel(null);
-
-  }, [currentModel])
+  }, [currentModel]);
 
   useEffect(() => {
-    if (!orderImages) return
-    single()
-  }, [orderImages])
+    if (!orderImages) return;
+    single();
+  }, [orderImages]);
 
   useEffect(() => {
     if (
@@ -128,7 +127,7 @@ function Menu() {
 
       dragImages.forEach((img) => {
         img.addEventListener("dragstart", (e) => {
-          let modelImg = document.getElementById(img.id)
+          let modelImg = document.getElementById(img.id);
           if (modelImg.disabled) return;
 
           setOrderImages(false);
@@ -140,19 +139,22 @@ function Menu() {
 
           let modelToLoad = img.id;
 
-          Store.scene.children.forEach(item => {
+          Store.scene.children.forEach((item) => {
             if (item.name === "singleSeat" && modelToLoad === "singleSeat") {
-              modelToLoad = "singleSeatleftSide"
-            } else if (item.name === "cornerSeat" && modelToLoad === "leftSeat") {
-              modelToLoad = "leftSeatleftSide"
+              modelToLoad = "singleSeatleftSide";
+            } else if (
+              item.name === "cornerSeat" &&
+              modelToLoad === "leftSeat"
+            ) {
+              modelToLoad = "leftSeatleftSide";
             }
-          })
+          });
 
           switch (modelToLoad) {
             case "singleSeat":
-              let cornerSeat = Store.scene.children.filter(item => {
-                return item.name === "cornerSeat"
-              })
+              let cornerSeat = Store.scene.children.filter((item) => {
+                return item.name === "cornerSeat";
+              });
               if (cornerSeat.length > 0) {
                 setShowDeleteButtonSingleSeat(false);
               } else setShowDeleteButtonSingleSeat(true);
@@ -161,9 +163,9 @@ function Menu() {
               setShowDeleteButtonLeftSeat(true);
               break;
             case "rightSeat":
-              let corner = Store.scene.children.filter(item => {
-                return item.name === "cornerSeat"
-              })
+              let corner = Store.scene.children.filter((item) => {
+                return item.name === "cornerSeat";
+              });
               if (corner.length > 0) {
                 setShowDeleteButtonRightSeat(false);
               } else setShowDeleteButtonRightSeat(true);
@@ -194,7 +196,6 @@ function Menu() {
           loadedModels.push(modelToLoad);
 
           dragStart(modelToLoad, setOrderImages);
-
         });
       });
 

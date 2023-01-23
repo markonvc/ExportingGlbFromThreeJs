@@ -8,21 +8,21 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
 .leftSeat {
   position: fixed;
   top: 21%;
-  left: 23%;
+  left: 24%;
   width: 100px;
   height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
@@ -36,7 +36,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
@@ -50,7 +50,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
@@ -64,7 +64,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
@@ -78,7 +78,7 @@
   justify-content: center;
   align-items: center;
   opacity: 0;
-  z-index: 2;
+  z-index: 1;
   cursor: grab;
 }
 
@@ -100,7 +100,7 @@
   cursor: grab;
 }
 
-@media(max-width: 1200px) {
+@media (max-width: 1200px) {
   .singleSeat {
     top: 24%;
     left: 31%;
@@ -150,7 +150,7 @@
   }
 }
 
-@media(max-width: 1500px) {
+@media (max-width: 1500px) {
   .singleSeat {
     width: 80px;
     height: 80px;
@@ -184,5 +184,4 @@
     width: 80px;
     height: 80px;
   }
-
 }

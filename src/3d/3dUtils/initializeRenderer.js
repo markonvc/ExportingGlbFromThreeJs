@@ -20,7 +20,6 @@ class InitializeRenderer {
 
   initializeDOM = (renderer, canvas) => {
     canvas.appendChild(renderer.domElement);
-    console.log(canvas);
   };
 }
 

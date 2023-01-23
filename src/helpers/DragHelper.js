@@ -5,7 +5,6 @@ import Store from "../store/Store";
 
 export function dragStart(modelName, setOrderImages) {
   let canvas = document.getElementById("canvasContainer");
-  console.log(canvas.style.zIndex);
   document.getElementById("canvasContainer").style.zIndex = 2;
 
   if (canvas.getAttribute("model")) {
@@ -25,4 +24,3 @@ export function dragStart(modelName, setOrderImages) {
     });
   }
 }
-

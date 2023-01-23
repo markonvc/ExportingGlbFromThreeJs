@@ -19,7 +19,6 @@ class Target {
         model.name = targetModel + "Target";
         // model.material.color = "black";
         scene.add(model);
-        console.log(scene);
       },
       function (xhr) {
         console.log((xhr.loaded / xhr.total) * 100 + "% loaded");

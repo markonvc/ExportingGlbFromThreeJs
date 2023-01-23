@@ -18,9 +18,7 @@ function DeleteModel({ model }) {
     const scene = Store.scene;
 
     scene.children.forEach((item) => {
-      console.log(item.name);
       if (item.isGroup && item.name === model) {
-        console.log(item.name);
         item.children[0].children.forEach((objectModel) => {
           objectModel.children.forEach((mesh) => {
             if (mesh.isMesh) {
@@ -62,30 +60,66 @@ function DeleteModel({ model }) {
         }
 
         scene.remove(item);
-        single()
+        single();
 
-        let rightSeat = scene.children.filter(item => {
-          return item.name === "leftSeat"
-        })
+        let rightSeat = scene.children.filter((item) => {
+          return item.name === "leftSeat";
+        });
 
-        let leftSeat = scene.children.filter(item => {
-          return item.name === "rightSeat"
-        })
+        let leftSeat = scene.children.filter((item) => {
+          return item.name === "rightSeat";
+        });
 
-        if (model === "singleSeat" && rightSeat.length > 0 && leftSeat.length > 0) {
-          scene.children.forEach(item => {
+        if (
+          model === "singleSeat" &&
+          rightSeat.length > 0 &&
+          leftSeat.length > 0
+        ) {
+          scene.children.forEach((item) => {
             if (item.name === "leftSeat") {
               item.position.x = 0;
             }
 
-            if (item.name === "rightSeat" && rightSeat.length > 0 && leftSeat.length > 0) {
+            if (
+              item.name === "rightSeat" &&
+              rightSeat.length > 0 &&
+              leftSeat.length > 0
+            ) {
               item.position.x = -2.15;
             }
-          })
-        }
 
+            if (item.name === "leftSeatTarget") {
+              item.children.forEach((objectModel) => {
+                if (objectModel.isMesh) {
+                  objectModel.geometry.dispose();
+                  objectModel.material.dispose();
+                  item.remove(objectModel);
+                }
+              });
+            }
+
+            if (item.name === "rightSeatTarget") {
+              item.children.forEach((objectModel) => {
+                if (objectModel.isMesh) {
+                  objectModel.geometry.dispose();
+                  objectModel.material.dispose();
+                  item.remove(objectModel);
+                }
+              });
+            }
+
+            if (item.name === "singleSeatTarget") {
+              item.children.forEach((objectModel) => {
+                if (objectModel.isMesh) {
+                  objectModel.geometry.dispose();
+                  objectModel.material.dispose();
+                  item.remove(objectModel);
+                }
+              });
+            }
+          });
+        }
       } else if (item.isGroup && item.name.includes(model)) {
-        console.log(item);
         item.children.forEach((objectModel) => {
           if (objectModel.isMesh) {
             objectModel.geometry.dispose();

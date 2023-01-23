@@ -20,8 +20,7 @@ class ConfigureModel {
         } catch (error) {
           console.log(error);
         }
-      }, 1500)
-
+      }, 1500);
     } else if (newModel === "cornerSeat") {
       setTimeout(() => {
         document.getElementById("delete_cornerSeat").style.display = "flex";
@@ -30,9 +29,7 @@ class ConfigureModel {
         } catch (error) {
           console.log(error);
         }
-
-      }, 1500)
-
+      }, 1500);
     }
 
     loader.load(
@@ -55,7 +52,6 @@ class ConfigureModel {
         if (!hideModel) {
           scene.children.forEach((item) => {
             if (item.isGroup && item.name === newModel) {
-              console.log(newModel);
               let css = `.${newModel}:hover{ opacity: 1 }`;
               let style = document.createElement("style");
 

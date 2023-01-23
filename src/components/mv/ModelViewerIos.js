@@ -11,7 +11,7 @@ function ModelViewer() {
   useEffect(() => {
     if (mv.current !== null) {
       const mvElement = mv.current;
-      console.log(Store.modelHref);
+
       mvElement.addEventListener("load", () => {
         try {
           mvElement.activateAR();
